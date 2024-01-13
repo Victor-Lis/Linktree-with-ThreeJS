@@ -44,6 +44,11 @@ canvas {
         margin: 5px 15px;
         width: 40px;
         height: 40px;
+        &:hover{
+            opacity: .7;
+            cursor: pointer;
+            transition: .25s;
+        }
     }
   }
 }
