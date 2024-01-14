@@ -24,7 +24,7 @@ import {
 
 import {
     createWall,
-    createPortal
+    createPortal,
 } from './functions.js'
 
 const portal = createPortal({
@@ -62,6 +62,8 @@ world.addContactMaterial(githubFloorSphereContactMat)
 const point3Light = new THREE.PointLight(0xffffff, 3500, 300)
 point3Light.position.set(-85, 30, -85)
 scene.add(point3Light)
+
+
 
 function renderGithub() {
 

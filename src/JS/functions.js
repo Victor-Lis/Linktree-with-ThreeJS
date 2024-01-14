@@ -55,7 +55,7 @@ function createPortal({
 
     let blocks = []
 
-    positionY = positionY+(width/4)
+    positionY = positionY + (width / 4)
 
     while (blocks.length <= 14) {
 
@@ -68,7 +68,7 @@ function createPortal({
         } else if (blocks.length >= 12) {
             positionY = positionY - width
         }
-        
+
         const geo = new THREE.BoxGeometry(width, width, width)
         const mat = new THREE.MeshStandardMaterial({
             color: !bodyTexture && 0x333333,
@@ -107,14 +107,14 @@ function createPortal({
             body
         })
 
-        if(blocks.length == 15){
+        if (blocks.length == 15) {
 
             let portal = createWall({
                 geoWidth: .5,
-                geoHeight: width*3,
-                geoDepth: width*2,
-                bodyPositionY: positionY+width,
-                bodyPositionX: positionX+width*1.5,
+                geoHeight: width * 3,
+                geoDepth: width * 2,
+                bodyPositionY: positionY + width,
+                bodyPositionX: positionX + width * 1.5,
                 bodyPositionZ: positionZ,
                 color: 0x99ffff,
                 map: portalTexture,
@@ -126,7 +126,7 @@ function createPortal({
             portal.mesh.quaternion.copy(portal.body.quaternion)
 
         }
-    
+
     }
 
     return blocks

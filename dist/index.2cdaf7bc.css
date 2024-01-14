@@ -17,7 +17,7 @@ body {
 }
 
 canvas {
-  background-color: red;
+  background-color: #202020;
   width: 100%;
   min-height: 90%;
   position: absolute;

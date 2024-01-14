@@ -14,13 +14,8 @@ import {
     renderScenePhys
 } from './scenePhys.js'
 
-import {
-    renderScenario
-} from './scenario.js'
-
-import {
-    renderLinkedin
-} from './linkedin.js'
+import { renderScenario } from './scenario.js'
+import { renderLinkedin } from './linkedin.js'
 import { renderGithub } from './github.js';
 
 camera.position.set(0, 120, 117.5)

@@ -9700,6 +9700,7 @@ var _datGui = require("dat.gui");
 var _orbitControlsJs = require("three/examples/jsm/controls/OrbitControls.js");
 var _texturesJs = require("./textures.js");
 var _sceneJs = require("./scene.js");
+var _functionsJs = require("./functions.js");
 const world = new _cannonEs.World({
     gravity: new _cannonEs.Vec3(0, -19.81, 0)
 });
@@ -9763,7 +9764,99 @@ function renderScenePhys() {
     sphere.mesh.quaternion.copy(sphere.body.quaternion);
 }
 
-},{"three":"dfnD0","cannon-es":"hgIpQ","dat.gui":"k3xQk","three/examples/jsm/controls/OrbitControls.js":"7wHNO","./textures.js":"bxNkf","@parcel/transformer-js/src/esmodule-helpers.js":"LKKdx","./scene.js":"lrO6c"}],"i0cnO":[function(require,module,exports) {
+},{"three":"dfnD0","cannon-es":"hgIpQ","dat.gui":"k3xQk","three/examples/jsm/controls/OrbitControls.js":"7wHNO","./textures.js":"bxNkf","@parcel/transformer-js/src/esmodule-helpers.js":"LKKdx","./scene.js":"lrO6c","./functions.js":"f33ck"}],"f33ck":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "createWall", ()=>createWall);
+parcelHelpers.export(exports, "createPortal", ()=>createPortal);
+var _three = require("three");
+var _cannonEs = require("cannon-es");
+var _datGui = require("dat.gui");
+var _orbitControlsJs = require("three/examples/jsm/controls/OrbitControls.js");
+var _sceneJs = require("./scene.js");
+var _scenePhysJs = require("./scenePhys.js");
+function createWall({ geoWidth, geoHeight, geoDepth, bodyPositionX, bodyPositionY, bodyPositionZ, transparent, opacity, color, map }) {
+    const geo = new _three.BoxGeometry(geoWidth, geoHeight, geoDepth);
+    const mat = new _three.MeshStandardMaterial({
+        color: color ? color : 0x333333,
+        side: _three.DoubleSide,
+        transparent: !!transparent,
+        opacity: opacity ? opacity : 1,
+        map: map
+    });
+    const mesh = new _three.Mesh(geo, mat);
+    (0, _sceneJs.scene).add(mesh);
+    const physMat = new _cannonEs.Material();
+    const body = new _cannonEs.Body({
+        //shape: new CANNON.Plane(),
+        //mass: 10
+        shape: new _cannonEs.Box(new _cannonEs.Vec3(geoWidth / 2, geoHeight / 2, geoDepth / 2)),
+        position: new _cannonEs.Vec3(bodyPositionX, bodyPositionY ? bodyPositionY : geoHeight / 2, bodyPositionZ),
+        type: _cannonEs.Body.STATIC,
+        material: physMat
+    });
+    (0, _scenePhysJs.world).addBody(body);
+    return {
+        mesh,
+        physMat,
+        body
+    };
+}
+function createPortal({ positionX, positionY, positionZ, width, bodyTexture, restitution, portalTexture }) {
+    let blocks = [];
+    positionY = positionY + width / 4;
+    while(blocks.length <= 14){
+        if (blocks.length > 0 && blocks.length < 4) positionX = positionX + width;
+        else if (blocks.length >= 4 && blocks.length < 8) positionY = positionY + width;
+        else if (blocks.length >= 8 && blocks.length < 11) positionX = positionX - width;
+        else if (blocks.length >= 12) positionY = positionY - width;
+        const geo = new _three.BoxGeometry(width, width, width);
+        const mat = new _three.MeshStandardMaterial({
+            color: !bodyTexture && 0x333333,
+            side: _three.DoubleSide,
+            map: bodyTexture
+        });
+        const mesh = new _three.Mesh(geo, mat);
+        mesh.position.set(positionX, positionY, positionZ);
+        (0, _sceneJs.scene).add(mesh);
+        const physMat = new _cannonEs.Material();
+        const body = new _cannonEs.Body({
+            //shape: new CANNON.Plane(),
+            //mass: 10
+            shape: new _cannonEs.Box(new _cannonEs.Vec3(width / 2, width / 2, width / 2)),
+            position: new _cannonEs.Vec3(positionX, positionY, positionZ),
+            type: _cannonEs.Body.STATIC,
+            material: physMat
+        });
+        (0, _scenePhysJs.world).addBody(body);
+        const physSphereContactMat = new _cannonEs.ContactMaterial(physMat, (0, _scenePhysJs.sphere).phys, {
+            restitution: restitution ? restitution : 0
+        });
+        (0, _scenePhysJs.world).addContactMaterial(physSphereContactMat);
+        blocks.push({
+            mesh,
+            body
+        });
+        if (blocks.length == 15) {
+            let portal = createWall({
+                geoWidth: .5,
+                geoHeight: width * 3,
+                geoDepth: width * 2,
+                bodyPositionY: positionY + width,
+                bodyPositionX: positionX + width * 1.5,
+                bodyPositionZ: positionZ,
+                color: 0x99ffff,
+                map: portalTexture
+            });
+            portal.body.quaternion.setFromEuler(0, Math.PI * 1.5, 0);
+            portal.mesh.position.copy(portal.body.position);
+            portal.mesh.quaternion.copy(portal.body.quaternion);
+        }
+    }
+    return blocks;
+}
+
+},{"three":"dfnD0","cannon-es":"hgIpQ","dat.gui":"k3xQk","three/examples/jsm/controls/OrbitControls.js":"7wHNO","@parcel/transformer-js/src/esmodule-helpers.js":"LKKdx","./scenePhys.js":"iZCTU","./scene.js":"lrO6c"}],"i0cnO":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "renderScenario", ()=>renderScenario);
@@ -9858,99 +9951,7 @@ function renderScenario() {
     roof.mesh.quaternion.copy(roof.body.quaternion);
 }
 
-},{"three":"dfnD0","cannon-es":"hgIpQ","dat.gui":"k3xQk","three/examples/jsm/controls/OrbitControls.js":"7wHNO","./scenePhys.js":"iZCTU","./scenePhys":"iZCTU","./functions.js":"f33ck","@parcel/transformer-js/src/esmodule-helpers.js":"LKKdx","./textures.js":"bxNkf"}],"f33ck":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "createWall", ()=>createWall);
-parcelHelpers.export(exports, "createPortal", ()=>createPortal);
-var _three = require("three");
-var _cannonEs = require("cannon-es");
-var _datGui = require("dat.gui");
-var _orbitControlsJs = require("three/examples/jsm/controls/OrbitControls.js");
-var _sceneJs = require("./scene.js");
-var _scenePhysJs = require("./scenePhys.js");
-function createWall({ geoWidth, geoHeight, geoDepth, bodyPositionX, bodyPositionY, bodyPositionZ, transparent, opacity, color, map }) {
-    const geo = new _three.BoxGeometry(geoWidth, geoHeight, geoDepth);
-    const mat = new _three.MeshStandardMaterial({
-        color: color ? color : 0x333333,
-        side: _three.DoubleSide,
-        transparent: !!transparent,
-        opacity: opacity ? opacity : 1,
-        map: map
-    });
-    const mesh = new _three.Mesh(geo, mat);
-    (0, _sceneJs.scene).add(mesh);
-    const physMat = new _cannonEs.Material();
-    const body = new _cannonEs.Body({
-        //shape: new CANNON.Plane(),
-        //mass: 10
-        shape: new _cannonEs.Box(new _cannonEs.Vec3(geoWidth / 2, geoHeight / 2, geoDepth / 2)),
-        position: new _cannonEs.Vec3(bodyPositionX, bodyPositionY ? bodyPositionY : geoHeight / 2, bodyPositionZ),
-        type: _cannonEs.Body.STATIC,
-        material: physMat
-    });
-    (0, _scenePhysJs.world).addBody(body);
-    return {
-        mesh,
-        physMat,
-        body
-    };
-}
-function createPortal({ positionX, positionY, positionZ, width, bodyTexture, restitution, portalTexture }) {
-    let blocks = [];
-    positionY = positionY + width / 4;
-    while(blocks.length <= 14){
-        if (blocks.length > 0 && blocks.length < 4) positionX = positionX + width;
-        else if (blocks.length >= 4 && blocks.length < 8) positionY = positionY + width;
-        else if (blocks.length >= 8 && blocks.length < 11) positionX = positionX - width;
-        else if (blocks.length >= 12) positionY = positionY - width;
-        const geo = new _three.BoxGeometry(width, width, width);
-        const mat = new _three.MeshStandardMaterial({
-            color: !bodyTexture && 0x333333,
-            side: _three.DoubleSide,
-            map: bodyTexture
-        });
-        const mesh = new _three.Mesh(geo, mat);
-        mesh.position.set(positionX, positionY, positionZ);
-        (0, _sceneJs.scene).add(mesh);
-        const physMat = new _cannonEs.Material();
-        const body = new _cannonEs.Body({
-            //shape: new CANNON.Plane(),
-            //mass: 10
-            shape: new _cannonEs.Box(new _cannonEs.Vec3(width / 2, width / 2, width / 2)),
-            position: new _cannonEs.Vec3(positionX, positionY, positionZ),
-            type: _cannonEs.Body.STATIC,
-            material: physMat
-        });
-        (0, _scenePhysJs.world).addBody(body);
-        const physSphereContactMat = new _cannonEs.ContactMaterial(physMat, (0, _scenePhysJs.sphere).phys, {
-            restitution: restitution ? restitution : 0
-        });
-        (0, _scenePhysJs.world).addContactMaterial(physSphereContactMat);
-        blocks.push({
-            mesh,
-            body
-        });
-        if (blocks.length == 15) {
-            let portal = createWall({
-                geoWidth: .5,
-                geoHeight: width * 3,
-                geoDepth: width * 2,
-                bodyPositionY: positionY + width,
-                bodyPositionX: positionX + width * 1.5,
-                bodyPositionZ: positionZ,
-                color: 0x99ffff,
-                map: portalTexture
-            });
-            portal.body.quaternion.setFromEuler(0, Math.PI * 1.5, 0);
-            portal.mesh.position.copy(portal.body.position);
-            portal.mesh.quaternion.copy(portal.body.quaternion);
-        }
-    }
-    return blocks;
-}
-
-},{"three":"dfnD0","cannon-es":"hgIpQ","dat.gui":"k3xQk","three/examples/jsm/controls/OrbitControls.js":"7wHNO","@parcel/transformer-js/src/esmodule-helpers.js":"LKKdx","./scenePhys.js":"iZCTU","./scene.js":"lrO6c"}],"8AXaD":[function(require,module,exports) {
+},{"three":"dfnD0","cannon-es":"hgIpQ","dat.gui":"k3xQk","three/examples/jsm/controls/OrbitControls.js":"7wHNO","./scenePhys.js":"iZCTU","./scenePhys":"iZCTU","./functions.js":"f33ck","@parcel/transformer-js/src/esmodule-helpers.js":"LKKdx","./textures.js":"bxNkf"}],"8AXaD":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "renderLinkedin", ()=>renderLinkedin);
