@@ -8,7 +8,9 @@ import {
 } from './scene.js'
  
 import {
-    linkedin
+    linkedin,
+    madeira,
+    quartzo,
 } from './textures.js'
 
 import {
@@ -24,11 +26,13 @@ import {
 } from './functions.js'
 
 const linkedinBaseWall1 = createWall({
-    geoWidth: 2.5,
-    geoHeight: 20,
-    geoDepth: 80,
-    bodyPositionX: 95,
-    bodyPositionZ: 57.5
+    geoWidth: 6,
+    geoHeight: 25,
+    geoDepth: 66.5,
+    bodyPositionX: 86,
+    bodyPositionZ: 51,
+    color: 0xffffff,
+    map: quartzo,
 })
 
 linkedinBaseWall1.body.quaternion.setFromEuler(0, Math.PI / 2, 0);
@@ -44,11 +48,13 @@ const linkedinBaseWall1SphereContactMat = new CANNON.ContactMaterial(
 world.addContactMaterial(linkedinBaseWall1SphereContactMat)
 
 const linkedinBaseWall2 = createWall({
-    geoWidth: 2.5,
-    geoHeight: 20,
-    geoDepth: 75,
-    bodyPositionX: 55,
-    bodyPositionZ: 125 - 30
+    geoWidth: 6,
+    geoHeight: 25,
+    geoDepth: 72,
+    bodyPositionX: 52,
+    bodyPositionZ: 84,
+    color: 0xffffff,
+    map: quartzo,
 })
 
 const linkedinBaseWall2SphereContactMat = new CANNON.ContactMaterial(
@@ -64,12 +70,13 @@ world.addContactMaterial(linkedinBaseWall2SphereContactMat)
 
 const linkedinRamp = createWall({
     geoWidth: .5,
-    geoHeight: 65,
-    geoDepth: 30,
-    bodyPositionX: 0,
+    geoHeight: 85,
+    geoDepth: 70,
+    bodyPositionX: 23,
     bodyPositionY: 1,
     bodyPositionZ: 90,
-    color: 0x0ff0f0
+    color: 0xcccccc,
+    map: madeira,
 })
 
 const linkedinRampSphereContactMat = new CANNON.ContactMaterial(
@@ -80,12 +87,12 @@ const linkedinRampSphereContactMat = new CANNON.ContactMaterial(
     },
 )
 
-linkedinRamp.body.quaternion.setFromEuler(Math.PI * 1.5, Math.PI * 1.30, 0);
+linkedinRamp.body.quaternion.setFromEuler(Math.PI * 1.5, Math.PI * 1.27, 0);
 world.addContactMaterial(linkedinRampSphereContactMat)
 
 const linkedinFloor = createWall({
     geoWidth: .5,
-    geoHeight: 62.5,
+    geoHeight: 65.5,
     geoDepth: 67.5,
     bodyPositionX: 87.5,
     bodyPositionY: 20,
@@ -98,12 +105,12 @@ const linkedinFloorSphereContactMat = new CANNON.ContactMaterial(
     linkedinFloor.physMat,
     sphere.phys,
     {
-        restitution: 5,
+        restitution: .5,
     }
 )
 
-const point2Light = new THREE.PointLight(0x000ff0, 12500, 300)
-point2Light.position.set(90, 50, 90)
+const point2Light = new THREE.PointLight(0x000ff0, 10000, 300)
+point2Light.position.set(90, 20, 90)
 scene.add(point2Light)
 
 linkedinFloor.body.quaternion.setFromEuler(Math.PI * 1.5, Math.PI * 1.5, 0);

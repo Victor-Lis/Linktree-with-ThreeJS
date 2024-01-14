@@ -7,6 +7,10 @@ import {
     sphere
 } from './scenePhys.js'
 
+import {
+    brick 
+} from './textures.js'
+
 import { 
     world 
 } from './scenePhys';
@@ -20,7 +24,8 @@ const wall1 = createWall({
     geoHeight: 125,
     geoDepth: 10,
     bodyPositionX: 125,
-    bodyPositionZ: 0
+    bodyPositionZ: 0,
+    map: brick,
 })
 
 const wall1SphereContactMat = new CANNON.ContactMaterial(
@@ -40,7 +45,8 @@ const wall2 = createWall({
     geoHeight: 125,
     geoDepth: 10,
     bodyPositionX: -125,
-    bodyPositionZ: 0
+    bodyPositionZ: 0,
+    map: brick,
 })
 
 const wall2SphereContactMat = new CANNON.ContactMaterial(
@@ -60,7 +66,8 @@ const wall3 = createWall({
     geoHeight: 125,
     geoDepth: 10,
     bodyPositionX: 0,
-    bodyPositionZ: 125
+    bodyPositionZ: 125,
+    map: brick,
 })
 
 const wall3SphereContactMat = new CANNON.ContactMaterial(
@@ -79,7 +86,8 @@ const wall4 = createWall({
     geoHeight: 125,
     geoDepth: 10,
     bodyPositionX: 0,
-    bodyPositionZ: -125
+    bodyPositionZ: -125,
+    map: brick,
 })
 
 const wall4SphereContactMat = new CANNON.ContactMaterial(

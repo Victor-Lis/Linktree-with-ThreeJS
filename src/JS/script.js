@@ -25,7 +25,7 @@ import { renderGithub } from './github.js';
 
 let redirecting = false;
 
-camera.position.set(sphere.body.position.x, sphere.body.position.y + 20, sphere.body.position.z)
+camera.position.set(0, 140, 120)
 
 function animate() {
 
@@ -40,31 +40,31 @@ function animate() {
     const lookAt = new THREE.Vector3(sphere.body.position.x, sphere.body.position.y, sphere.body.position.z)
     camera.lookAt(lookAt)
 
-    // if (sphere.mesh.position.z > 53 && sphere.mesh.position.x > 53) {
+    if (sphere.mesh.position.z > 53 && sphere.mesh.position.x > 53) {
 
-    //     setTimeout(() => {
+        setTimeout(() => {
 
-    //         if (!redirecting) {
-    //             // window.location.href = "https://www.linkedin.com/in/victor-lis-bronzo/"
-    //             redirecting = true
-    //         }
+            if (!redirecting) {
+                window.location.href = "https://www.linkedin.com/in/victor-lis-bronzo/"
+                redirecting = true
+            }
 
-    //     }, 1000)
+        }, 2000)
 
-    // }
+    }
 
-    // if (((sphere.mesh.position.z > -102) && (sphere.mesh.position.z < -57)) && ((sphere.mesh.position.x < -44) && (sphere.mesh.position.x > -102))) {
+    if (((sphere.mesh.position.z > -102) && (sphere.mesh.position.z < -57)) && ((sphere.mesh.position.x < -44) && (sphere.mesh.position.x > -102))) {
 
-    //     setTimeout(() => {
+        setTimeout(() => {
 
-    //         if (!redirecting) {
-    //             // window.location.href = "https://www.github.com/Victor-Lis"
-    //             redirecting = true
-    //         }
+            if (!redirecting) {
+                window.location.href = "https://www.github.com/Victor-Lis"
+                redirecting = true
+            }
 
-    //     }, 1000)
+        }, 2000)
 
-    // }
+    }
 
     renderer.render(scene, camera);
 }
@@ -78,37 +78,6 @@ const controls = {
     down: document.querySelector("#down"),
 }
 
-controls.left.addEventListener("click", (e) => {
-    move({ direction: 1 })
-})
-
-controls.right.addEventListener("click", (e) => {
-    move({ direction: 2 })
-})
-
-controls.up.addEventListener("click", (e) => {
-    move({ direction: 3 })
-})
-
-controls.down.addEventListener("click", (e) => {
-    move({ direction: 4 })
-})
-
-window.addEventListener("keydown", (e) => {
-    if (e.key.toUpperCase() == "A") {
-        move({ direction: 1 })
-    }
-    if (e.key.toUpperCase() == "D") {
-        move({ direction: 2 })
-    }
-    if (e.key.toUpperCase() == "W") {
-        move({ direction: 3 })
-    }
-    if (e.key.toUpperCase() == "S") {
-        move({ direction: 4 })
-    }
-})
-
 function move({ direction }) {
     if (direction == 1) {
         sphere.body.angularVelocity.set(10, 0, 0)
@@ -120,3 +89,34 @@ function move({ direction }) {
         sphere.body.angularVelocity.set(0, 0, -10)
     }
 }
+
+controls.left.addEventListener("click", (e) => {
+    move({ direction: 3 })
+})
+
+controls.right.addEventListener("click", (e) => {
+    move({ direction: 4 })
+})
+
+controls.up.addEventListener("click", (e) => {
+    move({ direction: 2 })
+})
+
+controls.down.addEventListener("click", (e) => {
+    move({ direction: 1 })
+})
+
+window.addEventListener("keydown", (e) => {
+    if (e.key.toUpperCase() == "A") {
+        move({ direction: 3 })
+    }
+    if (e.key.toUpperCase() == "D") {
+        move({ direction: 4 })
+    }
+    if (e.key.toUpperCase() == "W") {
+        move({ direction: 2 })
+    }
+    if (e.key.toUpperCase() == "S") {
+        move({ direction: 1 })
+    }
+})

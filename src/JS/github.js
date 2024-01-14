@@ -8,7 +8,8 @@ import {
 } from './scene.js'
  
 import {
-    github
+    github,
+    pedregulho
 } from './textures.js'
 
 import {
@@ -24,11 +25,13 @@ import {
 } from './functions.js'
 
 const githubBaseWall1 = createWall({
-    geoWidth: 200,
+    geoWidth: 50,
     geoHeight: 10,
     geoDepth: 2.5,
-    bodyPositionX: 0,
-    bodyPositionZ: -100
+    bodyPositionX: -75,
+    bodyPositionZ: -100,
+    color: 0x777777,
+    map: pedregulho,
 })
 
 const githubBaseWall1SphereContactMat = new CANNON.ContactMaterial(
@@ -42,11 +45,13 @@ const githubBaseWall1SphereContactMat = new CANNON.ContactMaterial(
 world.addContactMaterial(githubBaseWall1SphereContactMat)
 
 const githubBaseWall2 = createWall({
-    geoWidth: 50,
+    geoWidth: 20,
     geoHeight: 10,
     geoDepth: 2.5,
-    bodyPositionX: 100,
-    bodyPositionZ: -75
+    bodyPositionX: -110,
+    bodyPositionZ: -75,
+    color: 0x777777,
+    map: pedregulho,
 })
 
 const githubBaseWall2SphereContactMat = new CANNON.ContactMaterial(
@@ -57,7 +62,7 @@ const githubBaseWall2SphereContactMat = new CANNON.ContactMaterial(
     }
 )
 
-githubBaseWall2.body.quaternion.setFromEuler(0, Math.PI * 1.5, 0);
+githubBaseWall2.body.quaternion.setFromEuler(0, 0, 0);
 world.addContactMaterial(githubBaseWall2SphereContactMat)
 
 const githubBaseWall3 = createWall({
@@ -65,7 +70,9 @@ const githubBaseWall3 = createWall({
     geoHeight: 10,
     geoDepth: 2.5,
     bodyPositionX: -100,
-    bodyPositionZ: -87.5
+    bodyPositionZ: -87.5,
+    color: 0x777777,
+    map: pedregulho,
 })
 
 const githubBaseWall3SphereContactMat = new CANNON.ContactMaterial(
@@ -80,11 +87,13 @@ githubBaseWall3.body.quaternion.setFromEuler(0, Math.PI * 1.5, 0);
 world.addContactMaterial(githubBaseWall3SphereContactMat)
 
 const githubBaseWall4 = createWall({
-    geoWidth: 100,
+    geoWidth: 50,
     geoHeight: 10,
     geoDepth: 2.5,
-    bodyPositionX: -100,
-    bodyPositionZ: -50
+    bodyPositionX: -75,
+    bodyPositionZ: -50,
+    color: 0x777777,
+    map: pedregulho,
 })
 
 const githubBaseWall4SphereContactMat = new CANNON.ContactMaterial(
@@ -103,7 +112,9 @@ const githubBaseWall5 = createWall({
     geoHeight: 10,
     geoDepth: 2.5,
     bodyPositionX: -50,
-    bodyPositionZ: -75
+    bodyPositionZ: -75,
+    color: 0x777777,
+    map: pedregulho,
 })
 
 const githubBaseWall5SphereContactMat = new CANNON.ContactMaterial(
@@ -136,8 +147,8 @@ const githubFloorSphereContactMat = new CANNON.ContactMaterial(
     }
 )
 
-const point3Light = new THREE.PointLight(0xffffff, 12500, 300)
-point3Light.position.set(-80, 30, -80)
+const point3Light = new THREE.PointLight(0xffffff, 3500, 300)
+point3Light.position.set(-85, 30, -85)
 scene.add(point3Light)
 
 githubFloor.body.quaternion.setFromEuler(Math.PI * 1.5, Math.PI * 1.5, 0);

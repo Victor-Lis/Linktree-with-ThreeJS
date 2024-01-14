@@ -15,12 +15,11 @@ import {
 
 import {
     grass,
-    linkedin, 
-    github,
+    bola, 
 } from './textures.js'
 
 const world = new CANNON.World({
-    gravity: new CANNON.Vec3(0, -9.81, 0),
+    gravity: new CANNON.Vec3(0, -19.81, 0),
 })
 
 const groundPhysMat = new CANNON.Material()
@@ -50,9 +49,10 @@ world.addBody(groundBody);
 const spherePhysMat = new CANNON.Material()
 
 const sphereGeo = new THREE.SphereGeometry(5)
-const sphereMat = new THREE.MeshStandardMaterial({
-    color: 0xf00000,
-    wireframe: true,
+const sphereMat = new THREE.MeshLambertMaterial({
+    color: 0xffffff,
+    map: bola,
+    // wireframe: true,
 })
 const sphereMesh = new THREE.Mesh(sphereGeo, sphereMat)
 scene.add(sphereMesh)

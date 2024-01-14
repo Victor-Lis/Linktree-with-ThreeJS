@@ -35,7 +35,7 @@ orbit.update()
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
 scene.add(ambientLight)
 
-const pointLight = new THREE.PointLight(0xFFFFFF, 3500, 300)
+const pointLight = new THREE.PointLight(0xFFFFFF, 5000, 300)
 pointLight.position.set(0, 50, 0)
 scene.add(pointLight)
 
