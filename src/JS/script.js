@@ -23,9 +23,7 @@ import {
 } from './linkedin.js'
 import { renderGithub } from './github.js';
 
-let redirecting = false;
-
-camera.position.set(0, 140, 120)
+camera.position.set(0, 120, 117.5)
 
 function animate() {
 
@@ -40,30 +38,12 @@ function animate() {
     const lookAt = new THREE.Vector3(sphere.body.position.x, sphere.body.position.y, sphere.body.position.z)
     camera.lookAt(lookAt)
 
-    if (sphere.mesh.position.z > 53 && sphere.mesh.position.x > 53) {
-
-        setTimeout(() => {
-
-            if (!redirecting) {
-                window.location.href = "https://www.linkedin.com/in/victor-lis-bronzo/"
-                redirecting = true
-            }
-
-        }, 2000)
-
+    if ((sphere.mesh.position.x >= 56 && sphere.mesh.position.x <= 78) && (sphere.mesh.position.z <= -108)) {
+        window.location.href = "https://www.linkedin.com/in/victor-lis-bronzo/"
     }
 
-    if (((sphere.mesh.position.z > -102) && (sphere.mesh.position.z < -57)) && ((sphere.mesh.position.x < -44) && (sphere.mesh.position.x > -102))) {
-
-        setTimeout(() => {
-
-            if (!redirecting) {
-                window.location.href = "https://www.github.com/Victor-Lis"
-                redirecting = true
-            }
-
-        }, 2000)
-
+    if ((sphere.mesh.position.x <= -56 && sphere.mesh.position.x >= -78) && (sphere.mesh.position.z <= -108)) {
+        window.location.href = "https://www.github.com/Victor-Lis"
     }
 
     renderer.render(scene, camera);
