@@ -20,7 +20,7 @@ import {
 } from './functions.js'
 
 const wall1 = createWall({
-    geoWidth: 265,
+    geoWidth: 255,
     geoHeight: 125,
     geoDepth: 10,
     bodyPositionX: 125,
@@ -41,7 +41,7 @@ world.addContactMaterial(wall1SphereContactMat)
 wall1.body.quaternion.setFromEuler(0, Math.PI * -.5, 0);
 
 const wall2 = createWall({
-    geoWidth: 265,
+    geoWidth: 255,
     geoHeight: 125,
     geoDepth: 10,
     bodyPositionX: -125,
@@ -62,7 +62,7 @@ world.addContactMaterial(wall2SphereContactMat)
 wall2.body.quaternion.setFromEuler(0, Math.PI * -.5, 0);
 
 const wall3 = createWall({
-    geoWidth: 265,
+    geoWidth: 255,
     geoHeight: 125,
     geoDepth: 10,
     bodyPositionX: 0,
@@ -82,7 +82,7 @@ const wall3SphereContactMat = new CANNON.ContactMaterial(
 world.addContactMaterial(wall3SphereContactMat)
 
 const wall4 = createWall({
-    geoWidth: 265,
+    geoWidth: 255,
     geoHeight: 125,
     geoDepth: 10,
     bodyPositionX: 0,

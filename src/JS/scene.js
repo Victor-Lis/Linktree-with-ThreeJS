@@ -32,12 +32,12 @@ const orbit = new OrbitControls(camera, renderer.domElement);
 orbit.update()
 // orbit.enabled = false
 
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.25)
 scene.add(ambientLight)
 
-const pointLight = new THREE.PointLight(0xFFFFFF, 5000, 300)
-pointLight.position.set(0, 50, 0)
-scene.add(pointLight)
+// const pointLight = new THREE.PointLight(0xFFFFFF, 5000, 300)
+// pointLight.position.set(0, 50, 0)
+// scene.add(pointLight)
 
 window.addEventListener('resize', function () {
     canvas.style.minWidth = `${window.innerWidth}px`

@@ -52,7 +52,6 @@ const sphereGeo = new THREE.SphereGeometry(5)
 const sphereMat = new THREE.MeshLambertMaterial({
     color: 0xffffff,
     map: bola,
-    // wireframe: true,
 })
 const sphereMesh = new THREE.Mesh(sphereGeo, sphereMat)
 scene.add(sphereMesh)
