@@ -588,8 +588,7 @@ var _scenePhysJs = require("./scenePhys.js");
 var _scenarioJs = require("./scenario.js");
 var _linkedinJs = require("./linkedin.js");
 var _githubJs = require("./github.js");
-let redirecting = false;
-(0, _sceneJs.camera).position.set(0, 140, 120);
+(0, _sceneJs.camera).position.set(0, 120, 117.5);
 function animate() {
     (0, _scenePhysJs.renderScenePhys)();
     (0, _scenarioJs.renderScenario)();
@@ -597,18 +596,8 @@ function animate() {
     (0, _githubJs.renderGithub)();
     const lookAt = new _three.Vector3((0, _scenePhysJs.sphere).body.position.x, (0, _scenePhysJs.sphere).body.position.y, (0, _scenePhysJs.sphere).body.position.z);
     (0, _sceneJs.camera).lookAt(lookAt);
-    if ((0, _scenePhysJs.sphere).mesh.position.z > 53 && (0, _scenePhysJs.sphere).mesh.position.x > 53) setTimeout(()=>{
-        if (!redirecting) {
-            window.location.href = "https://www.linkedin.com/in/victor-lis-bronzo/";
-            redirecting = true;
-        }
-    }, 2000);
-    if ((0, _scenePhysJs.sphere).mesh.position.z > -102 && (0, _scenePhysJs.sphere).mesh.position.z < -57 && (0, _scenePhysJs.sphere).mesh.position.x < -44 && (0, _scenePhysJs.sphere).mesh.position.x > -102) setTimeout(()=>{
-        if (!redirecting) {
-            window.location.href = "https://www.github.com/Victor-Lis";
-            redirecting = true;
-        }
-    }, 2000);
+    if ((0, _scenePhysJs.sphere).mesh.position.x >= 56 && (0, _scenePhysJs.sphere).mesh.position.x <= 78 && (0, _scenePhysJs.sphere).mesh.position.z <= -108) window.location.href = "https://www.linkedin.com/in/victor-lis-bronzo/";
+    if ((0, _scenePhysJs.sphere).mesh.position.x <= -56 && (0, _scenePhysJs.sphere).mesh.position.x >= -78 && (0, _scenePhysJs.sphere).mesh.position.z <= -108) window.location.href = "https://www.github.com/Victor-Lis";
     (0, _sceneJs.renderer).render((0, _sceneJs.scene), (0, _sceneJs.camera));
 }
 (0, _sceneJs.renderer).setAnimationLoop(animate);
@@ -9787,7 +9776,7 @@ var _texturesJs = require("./textures.js");
 var _scenePhys = require("./scenePhys");
 var _functionsJs = require("./functions.js");
 const wall1 = (0, _functionsJs.createWall)({
-    geoWidth: 265,
+    geoWidth: 255,
     geoHeight: 125,
     geoDepth: 10,
     bodyPositionX: 125,
@@ -9801,7 +9790,7 @@ const wall1SphereContactMat = new _cannonEs.ContactMaterial(wall1.physMat, (0, _
 (0, _scenePhys.world).addContactMaterial(wall1SphereContactMat);
 wall1.body.quaternion.setFromEuler(0, Math.PI * -0.5, 0);
 const wall2 = (0, _functionsJs.createWall)({
-    geoWidth: 265,
+    geoWidth: 255,
     geoHeight: 125,
     geoDepth: 10,
     bodyPositionX: -125,
@@ -9815,7 +9804,7 @@ const wall2SphereContactMat = new _cannonEs.ContactMaterial(wall2.physMat, (0, _
 (0, _scenePhys.world).addContactMaterial(wall2SphereContactMat);
 wall2.body.quaternion.setFromEuler(0, Math.PI * -0.5, 0);
 const wall3 = (0, _functionsJs.createWall)({
-    geoWidth: 265,
+    geoWidth: 255,
     geoHeight: 125,
     geoDepth: 10,
     bodyPositionX: 0,
@@ -9828,7 +9817,7 @@ const wall3SphereContactMat = new _cannonEs.ContactMaterial(wall3.physMat, (0, _
 });
 (0, _scenePhys.world).addContactMaterial(wall3SphereContactMat);
 const wall4 = (0, _functionsJs.createWall)({
-    geoWidth: 265,
+    geoWidth: 255,
     geoHeight: 125,
     geoDepth: 10,
     bodyPositionX: 0,
@@ -9873,6 +9862,7 @@ function renderScenario() {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "createWall", ()=>createWall);
+parcelHelpers.export(exports, "createPortal", ()=>createPortal);
 var _three = require("three");
 var _cannonEs = require("cannon-es");
 var _datGui = require("dat.gui");
@@ -9906,6 +9896,59 @@ function createWall({ geoWidth, geoHeight, geoDepth, bodyPositionX, bodyPosition
         body
     };
 }
+function createPortal({ positionX, positionY, positionZ, width, bodyTexture, restitution, portalTexture }) {
+    let blocks = [];
+    positionY = positionY + width / 4;
+    while(blocks.length <= 14){
+        if (blocks.length > 0 && blocks.length < 4) positionX = positionX + width;
+        else if (blocks.length >= 4 && blocks.length < 8) positionY = positionY + width;
+        else if (blocks.length >= 8 && blocks.length < 11) positionX = positionX - width;
+        else if (blocks.length >= 12) positionY = positionY - width;
+        const geo = new _three.BoxGeometry(width, width, width);
+        const mat = new _three.MeshStandardMaterial({
+            color: !bodyTexture && 0x333333,
+            side: _three.DoubleSide,
+            map: bodyTexture
+        });
+        const mesh = new _three.Mesh(geo, mat);
+        mesh.position.set(positionX, positionY, positionZ);
+        (0, _sceneJs.scene).add(mesh);
+        const physMat = new _cannonEs.Material();
+        const body = new _cannonEs.Body({
+            //shape: new CANNON.Plane(),
+            //mass: 10
+            shape: new _cannonEs.Box(new _cannonEs.Vec3(width / 2, width / 2, width / 2)),
+            position: new _cannonEs.Vec3(positionX, positionY, positionZ),
+            type: _cannonEs.Body.STATIC,
+            material: physMat
+        });
+        (0, _scenePhysJs.world).addBody(body);
+        const physSphereContactMat = new _cannonEs.ContactMaterial(physMat, (0, _scenePhysJs.sphere).phys, {
+            restitution: restitution ? restitution : 0
+        });
+        (0, _scenePhysJs.world).addContactMaterial(physSphereContactMat);
+        blocks.push({
+            mesh,
+            body
+        });
+        if (blocks.length == 15) {
+            let portal = createWall({
+                geoWidth: .5,
+                geoHeight: width * 3,
+                geoDepth: width * 2,
+                bodyPositionY: positionY + width,
+                bodyPositionX: positionX + width * 1.5,
+                bodyPositionZ: positionZ,
+                color: 0x99ffff,
+                map: portalTexture
+            });
+            portal.body.quaternion.setFromEuler(0, Math.PI * 1.5, 0);
+            portal.mesh.position.copy(portal.body.position);
+            portal.mesh.quaternion.copy(portal.body.quaternion);
+        }
+    }
+    return blocks;
+}
 
 },{"three":"dfnD0","cannon-es":"hgIpQ","dat.gui":"k3xQk","three/examples/jsm/controls/OrbitControls.js":"7wHNO","@parcel/transformer-js/src/esmodule-helpers.js":"LKKdx","./scenePhys.js":"iZCTU","./scene.js":"lrO6c"}],"8AXaD":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -9920,74 +9963,36 @@ var _texturesJs = require("./textures.js");
 var _scenePhysJs = require("./scenePhys.js");
 var _scenePhys = require("./scenePhys");
 var _functionsJs = require("./functions.js");
-const linkedinBaseWall1 = (0, _functionsJs.createWall)({
-    geoWidth: 6,
-    geoHeight: 25,
-    geoDepth: 66.5,
-    bodyPositionX: 86,
-    bodyPositionZ: 51,
-    color: 0xffffff,
-    map: (0, _texturesJs.quartzo)
-});
-linkedinBaseWall1.body.quaternion.setFromEuler(0, Math.PI / 2, 0);
-const linkedinBaseWall1SphereContactMat = new _cannonEs.ContactMaterial(linkedinBaseWall1.physMat, (0, _scenePhysJs.sphere).phys, {
-    restitution: 0
-});
-(0, _scenePhys.world).addContactMaterial(linkedinBaseWall1SphereContactMat);
-const linkedinBaseWall2 = (0, _functionsJs.createWall)({
-    geoWidth: 6,
-    geoHeight: 25,
-    geoDepth: 72,
-    bodyPositionX: 52,
-    bodyPositionZ: 84,
-    color: 0xffffff,
-    map: (0, _texturesJs.quartzo)
-});
-const linkedinBaseWall2SphereContactMat = new _cannonEs.ContactMaterial(linkedinBaseWall2.physMat, (0, _scenePhysJs.sphere).phys, {
-    restitution: 0
-});
-(0, _scenePhys.world).addContactMaterial(linkedinBaseWall2SphereContactMat);
-const linkedinRamp = (0, _functionsJs.createWall)({
-    geoWidth: .5,
-    geoHeight: 85,
-    geoDepth: 70,
-    bodyPositionX: 23,
-    bodyPositionY: 1,
-    bodyPositionZ: 90,
-    color: 0xcccccc,
-    map: (0, _texturesJs.madeira)
-});
-const linkedinRampSphereContactMat = new _cannonEs.ContactMaterial(linkedinRamp.physMat, (0, _scenePhysJs.sphere).phys, {
-    friction: 1000
-});
-linkedinRamp.body.quaternion.setFromEuler(Math.PI * 1.5, Math.PI * 1.27, 0);
-(0, _scenePhys.world).addContactMaterial(linkedinRampSphereContactMat);
 const linkedinFloor = (0, _functionsJs.createWall)({
     geoWidth: .5,
-    geoHeight: 65.5,
-    geoDepth: 67.5,
-    bodyPositionX: 87.5,
-    bodyPositionY: 20,
-    bodyPositionZ: 87.5,
+    geoHeight: 30,
+    geoDepth: 30,
+    bodyPositionX: 66,
+    bodyPositionY: 10,
+    bodyPositionZ: -90,
     color: 0xffffff,
     map: (0, _texturesJs.linkedin)
 });
 const linkedinFloorSphereContactMat = new _cannonEs.ContactMaterial(linkedinFloor.physMat, (0, _scenePhysJs.sphere).phys, {
-    restitution: .5
+    restitution: 0
 });
-const point2Light = new _three.PointLight(0x000ff0, 10000, 300);
-point2Light.position.set(90, 20, 90);
-(0, _sceneJs.scene).add(point2Light);
-linkedinFloor.body.quaternion.setFromEuler(Math.PI * 1.5, Math.PI * 1.5, 0);
-console.log(linkedinFloor.body);
+linkedinFloor.body.quaternion.setFromEuler(Math.PI * 1.7, Math.PI * 1.5, 0);
 (0, _scenePhys.world).addContactMaterial(linkedinFloorSphereContactMat);
+const point2Light = new _three.PointLight(0x000ff0, 5000, 300);
+point2Light.position.set(75, 30, -95);
+(0, _sceneJs.scene).add(point2Light);
+// linkedinFloor.body.quaternion.setFromEuler(0, 0, Math.PI * 1.5);
+(0, _scenePhys.world).addContactMaterial(linkedinFloorSphereContactMat);
+const portal = (0, _functionsJs.createPortal)({
+    positionX: 45,
+    positionY: 5,
+    positionZ: -115,
+    width: 15,
+    bodyTexture: (0, _texturesJs.glowstone),
+    restitution: 0,
+    portalTexture: (0, _texturesJs.portal)
+});
 function renderLinkedin() {
-    linkedinBaseWall1.mesh.position.copy(linkedinBaseWall1.body.position);
-    linkedinBaseWall1.mesh.quaternion.copy(linkedinBaseWall1.body.quaternion);
-    linkedinBaseWall2.mesh.position.copy(linkedinBaseWall2.body.position);
-    linkedinBaseWall2.mesh.quaternion.copy(linkedinBaseWall2.body.quaternion);
-    linkedinRamp.mesh.position.copy(linkedinRamp.body.position);
-    linkedinRamp.mesh.quaternion.copy(linkedinRamp.body.quaternion);
     linkedinFloor.mesh.position.copy(linkedinFloor.body.position);
     linkedinFloor.mesh.quaternion.copy(linkedinFloor.body.quaternion);
 }
@@ -10005,105 +10010,34 @@ var _texturesJs = require("./textures.js");
 var _scenePhysJs = require("./scenePhys.js");
 var _scenePhys = require("./scenePhys");
 var _functionsJs = require("./functions.js");
-const githubBaseWall1 = (0, _functionsJs.createWall)({
-    geoWidth: 50,
-    geoHeight: 10,
-    geoDepth: 2.5,
-    bodyPositionX: -75,
-    bodyPositionZ: -100,
-    color: 0x777777,
-    map: (0, _texturesJs.pedregulho)
+const portal = (0, _functionsJs.createPortal)({
+    positionX: -90,
+    positionY: 5,
+    positionZ: -115,
+    width: 15,
+    bodyTexture: (0, _texturesJs.obsidiana),
+    restitution: 0,
+    portalTexture: (0, _texturesJs.portal)
 });
-const githubBaseWall1SphereContactMat = new _cannonEs.ContactMaterial(githubBaseWall1.physMat, (0, _scenePhysJs.sphere).phys, {
-    restitution: 0
-});
-(0, _scenePhys.world).addContactMaterial(githubBaseWall1SphereContactMat);
-const githubBaseWall2 = (0, _functionsJs.createWall)({
-    geoWidth: 20,
-    geoHeight: 10,
-    geoDepth: 2.5,
-    bodyPositionX: -110,
-    bodyPositionZ: -75,
-    color: 0x777777,
-    map: (0, _texturesJs.pedregulho)
-});
-const githubBaseWall2SphereContactMat = new _cannonEs.ContactMaterial(githubBaseWall2.physMat, (0, _scenePhysJs.sphere).phys, {
-    restitution: 0
-});
-githubBaseWall2.body.quaternion.setFromEuler(0, 0, 0);
-(0, _scenePhys.world).addContactMaterial(githubBaseWall2SphereContactMat);
-const githubBaseWall3 = (0, _functionsJs.createWall)({
-    geoWidth: 25,
-    geoHeight: 10,
-    geoDepth: 2.5,
-    bodyPositionX: -100,
-    bodyPositionZ: -87.5,
-    color: 0x777777,
-    map: (0, _texturesJs.pedregulho)
-});
-const githubBaseWall3SphereContactMat = new _cannonEs.ContactMaterial(githubBaseWall3.physMat, (0, _scenePhysJs.sphere).phys, {
-    restitution: 0
-});
-githubBaseWall3.body.quaternion.setFromEuler(0, Math.PI * 1.5, 0);
-(0, _scenePhys.world).addContactMaterial(githubBaseWall3SphereContactMat);
-const githubBaseWall4 = (0, _functionsJs.createWall)({
-    geoWidth: 50,
-    geoHeight: 10,
-    geoDepth: 2.5,
-    bodyPositionX: -75,
-    bodyPositionZ: -50,
-    color: 0x777777,
-    map: (0, _texturesJs.pedregulho)
-});
-const githubBaseWall4SphereContactMat = new _cannonEs.ContactMaterial(githubBaseWall4.physMat, (0, _scenePhysJs.sphere).phys, {
-    restitution: 0
-});
-githubBaseWall4.body.quaternion.setFromEuler(0, 0, 0);
-(0, _scenePhys.world).addContactMaterial(githubBaseWall4SphereContactMat);
-const githubBaseWall5 = (0, _functionsJs.createWall)({
-    geoWidth: 50,
-    geoHeight: 10,
-    geoDepth: 2.5,
-    bodyPositionX: -50,
-    bodyPositionZ: -75,
-    color: 0x777777,
-    map: (0, _texturesJs.pedregulho)
-});
-const githubBaseWall5SphereContactMat = new _cannonEs.ContactMaterial(githubBaseWall5.physMat, (0, _scenePhysJs.sphere).phys, {
-    restitution: 0
-});
-githubBaseWall5.body.quaternion.setFromEuler(0, Math.PI * 1.5, 0);
-(0, _scenePhys.world).addContactMaterial(githubBaseWall5SphereContactMat);
 const githubFloor = (0, _functionsJs.createWall)({
     geoWidth: .5,
-    geoHeight: 50,
-    geoDepth: 50,
-    bodyPositionX: -75,
-    bodyPositionY: 1,
-    bodyPositionZ: -75,
-    color: 0x202020,
+    geoHeight: 30,
+    geoDepth: 30,
+    bodyPositionX: -66,
+    bodyPositionY: 10,
+    bodyPositionZ: -90,
+    color: 0xffffff,
     map: (0, _texturesJs.github)
 });
 const githubFloorSphereContactMat = new _cannonEs.ContactMaterial(githubFloor.physMat, (0, _scenePhysJs.sphere).phys, {
     restitution: 0
 });
+githubFloor.body.quaternion.setFromEuler(Math.PI * 1.7, Math.PI * 1.5, 0);
+(0, _scenePhys.world).addContactMaterial(githubFloorSphereContactMat);
 const point3Light = new _three.PointLight(0xffffff, 3500, 300);
 point3Light.position.set(-85, 30, -85);
 (0, _sceneJs.scene).add(point3Light);
-githubFloor.body.quaternion.setFromEuler(Math.PI * 1.5, Math.PI * 1.5, 0);
-console.log(githubFloor.body);
-(0, _scenePhys.world).addContactMaterial(githubFloorSphereContactMat);
 function renderGithub() {
-    githubBaseWall1.mesh.position.copy(githubBaseWall1.body.position);
-    githubBaseWall1.mesh.quaternion.copy(githubBaseWall1.body.quaternion);
-    githubBaseWall2.mesh.position.copy(githubBaseWall2.body.position);
-    githubBaseWall2.mesh.quaternion.copy(githubBaseWall2.body.quaternion);
-    githubBaseWall3.mesh.position.copy(githubBaseWall3.body.position);
-    githubBaseWall3.mesh.quaternion.copy(githubBaseWall3.body.quaternion);
-    githubBaseWall4.mesh.position.copy(githubBaseWall4.body.position);
-    githubBaseWall4.mesh.quaternion.copy(githubBaseWall4.body.quaternion);
-    githubBaseWall5.mesh.position.copy(githubBaseWall5.body.position);
-    githubBaseWall5.mesh.quaternion.copy(githubBaseWall5.body.quaternion);
     githubFloor.mesh.position.copy(githubFloor.body.position);
     githubFloor.mesh.quaternion.copy(githubFloor.body.quaternion);
 }

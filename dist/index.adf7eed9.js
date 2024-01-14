@@ -602,11 +602,11 @@ const camera = new _three.PerspectiveCamera(45, parseInt(canvas.style.minWidth) 
 const orbit = new (0, _orbitControlsJs.OrbitControls)(camera, renderer.domElement);
 orbit.update();
 // orbit.enabled = false
-const ambientLight = new _three.AmbientLight(0xffffff, 0.5);
+const ambientLight = new _three.AmbientLight(0xffffff, 0.25);
 scene.add(ambientLight);
-const pointLight = new _three.PointLight(0xFFFFFF, 5000, 300);
-pointLight.position.set(0, 50, 0);
-scene.add(pointLight);
+// const pointLight = new THREE.PointLight(0xFFFFFF, 5000, 300)
+// pointLight.position.set(0, 50, 0)
+// scene.add(pointLight)
 window.addEventListener("resize", function() {
     canvas.style.minWidth = `${window.innerWidth}px`;
     canvas.style.minHeight = `${window.innerHeight}px`;

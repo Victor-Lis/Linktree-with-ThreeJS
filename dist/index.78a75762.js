@@ -589,6 +589,9 @@ parcelHelpers.export(exports, "madeira", ()=>madeira);
 parcelHelpers.export(exports, "quartzo", ()=>quartzo);
 parcelHelpers.export(exports, "pedregulho", ()=>pedregulho);
 parcelHelpers.export(exports, "bola", ()=>bola);
+parcelHelpers.export(exports, "portal", ()=>portal);
+parcelHelpers.export(exports, "obsidiana", ()=>obsidiana);
+parcelHelpers.export(exports, "glowstone", ()=>glowstone);
 var _three = require("three");
 var _grassSvg = require("../imgs/grass.svg");
 var _grassSvgDefault = parcelHelpers.interopDefault(_grassSvg);
@@ -606,6 +609,12 @@ var _pedregulhoJpeg = require("../imgs/pedregulho.jpeg");
 var _pedregulhoJpegDefault = parcelHelpers.interopDefault(_pedregulhoJpeg);
 var _ballPng = require("../imgs/ball.png");
 var _ballPngDefault = parcelHelpers.interopDefault(_ballPng);
+var _portalGif = require("../imgs/portal.gif");
+var _portalGifDefault = parcelHelpers.interopDefault(_portalGif);
+var _obsidianaJpeg = require("../imgs/obsidiana.jpeg");
+var _obsidianaJpegDefault = parcelHelpers.interopDefault(_obsidianaJpeg);
+var _glowstonePng = require("../imgs/glowstone.png");
+var _glowstonePngDefault = parcelHelpers.interopDefault(_glowstonePng);
 const textureLoader = new _three.TextureLoader();
 const grass = textureLoader.load((0, _grassSvgDefault.default));
 const brick = textureLoader.load((0, _stonebrickSvgDefault.default));
@@ -615,8 +624,11 @@ const madeira = textureLoader.load((0, _madeiraJpegDefault.default));
 const quartzo = textureLoader.load((0, _quartzoSvgDefault.default));
 const pedregulho = textureLoader.load((0, _pedregulhoJpegDefault.default));
 const bola = textureLoader.load((0, _ballPngDefault.default));
+const portal = textureLoader.load((0, _portalGifDefault.default));
+const obsidiana = textureLoader.load((0, _obsidianaJpegDefault.default));
+const glowstone = textureLoader.load((0, _glowstonePngDefault.default));
 
-},{"three":"dfnD0","../imgs/grass.svg":"iOKIe","../imgs/linkedin.png":"3nz8a","../imgs/github.png":"jk7lD","@parcel/transformer-js/src/esmodule-helpers.js":"LKKdx","../imgs/stonebrick.svg":"gPl3J","../imgs/madeira.jpeg":"6uWlk","../imgs/quartzo.svg":"hIonQ","../imgs/pedregulho.jpeg":"jMBAX","../imgs/ball.png":"5BgPp"}],"dfnD0":[function(require,module,exports) {
+},{"three":"dfnD0","../imgs/grass.svg":"iOKIe","../imgs/linkedin.png":"3nz8a","../imgs/github.png":"jk7lD","@parcel/transformer-js/src/esmodule-helpers.js":"LKKdx","../imgs/stonebrick.svg":"gPl3J","../imgs/madeira.jpeg":"6uWlk","../imgs/quartzo.svg":"hIonQ","../imgs/pedregulho.jpeg":"jMBAX","../imgs/ball.png":"5BgPp","../imgs/portal.gif":"dSU8D","../imgs/obsidiana.jpeg":"9riQu","../imgs/glowstone.png":"vUt8r"}],"dfnD0":[function(require,module,exports) {
 /**
  * @license
  * Copyright 2010-2023 Three.js Authors
@@ -31563,6 +31575,15 @@ module.exports = require("f0a5896f9d5c9c65").getBundleURL("jXkz8") + "pedregulho
 },{"f0a5896f9d5c9c65":"j4pdK"}],"5BgPp":[function(require,module,exports) {
 module.exports = require("69dc5c0658fc19fa").getBundleURL("jXkz8") + "ball.28b18b92.png" + "?" + Date.now();
 
-},{"69dc5c0658fc19fa":"j4pdK"}]},["lLcbt","bxNkf"], "bxNkf", "parcelRequirebe84")
+},{"69dc5c0658fc19fa":"j4pdK"}],"dSU8D":[function(require,module,exports) {
+module.exports = require("f69ee1c960f90092").getBundleURL("jXkz8") + "portal.6e60a335.gif" + "?" + Date.now();
+
+},{"f69ee1c960f90092":"j4pdK"}],"9riQu":[function(require,module,exports) {
+module.exports = require("1b30ef9fc8cba450").getBundleURL("jXkz8") + "obsidiana.3227e068.jpeg" + "?" + Date.now();
+
+},{"1b30ef9fc8cba450":"j4pdK"}],"vUt8r":[function(require,module,exports) {
+module.exports = require("c3308fa2263f50d6").getBundleURL("jXkz8") + "glowstone.eb95964f.png" + "?" + Date.now();
+
+},{"c3308fa2263f50d6":"j4pdK"}]},["lLcbt","bxNkf"], "bxNkf", "parcelRequirebe84")
 
 //# sourceMappingURL=index.78a75762.js.map
