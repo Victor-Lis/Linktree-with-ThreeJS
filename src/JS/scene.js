@@ -30,7 +30,7 @@ const camera = new THREE.PerspectiveCamera(
 const orbit = new OrbitControls(camera, renderer.domElement);
 
 orbit.update()
-// orbit.enabled = false
+orbit.enabled = false
 
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.25)
 scene.add(ambientLight)

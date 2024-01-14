@@ -601,7 +601,7 @@ scene.add(axesHelper);
 const camera = new _three.PerspectiveCamera(45, parseInt(canvas.style.minWidth) / parseInt(canvas.style.minHeight), 0.1, 1000);
 const orbit = new (0, _orbitControlsJs.OrbitControls)(camera, renderer.domElement);
 orbit.update();
-// orbit.enabled = false
+orbit.enabled = false;
 const ambientLight = new _three.AmbientLight(0xffffff, 0.25);
 scene.add(ambientLight);
 // const pointLight = new THREE.PointLight(0xFFFFFF, 5000, 300)
