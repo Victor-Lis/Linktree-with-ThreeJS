@@ -1,0 +1,22 @@
+{
+  "name": "portfolio-with-threejs",
+  "version": "1.0.0",
+  "description": "Esse é meu portfolio mostrando um pouco de meus conhecimentos!",
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Victor-Lis/Portfolio-with-ThreeJS.git"
+  },
+  "author": "Dev-Victor-Lis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Victor-Lis/Portfolio-with-ThreeJS/issues"
+  },
+  "homepage": "https://github.com/Victor-Lis/Portfolio-with-ThreeJS#readme",
+  "dependencies": {
+    "dat.gui": "^0.7.9"
+  }
+}
