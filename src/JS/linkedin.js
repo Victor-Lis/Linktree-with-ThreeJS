@@ -50,7 +50,7 @@ linkedinFloor.body.quaternion.setFromEuler(Math.PI * 1.7, Math.PI * 1.5, 0);
 world.addContactMaterial(linkedinFloorSphereContactMat)
 
 const point2Light = new THREE.PointLight(0x000ff0, 5000, 300)
-point2Light.position.set(75, 30, -95)
+point2Light.position.set(75, 50, -95)
 scene.add(point2Light)
 
 // linkedinFloor.body.quaternion.setFromEuler(0, 0, Math.PI * 1.5);
@@ -64,6 +64,7 @@ const portal = createPortal({
     bodyTexture: glowstone,
     restitution: 0,
     portalTexture: portalTexture,
+    portalColor: 0x000ff0,
 })
 
 function renderLinkedin(){

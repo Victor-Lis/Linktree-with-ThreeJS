@@ -17,6 +17,7 @@ import {
 import { renderScenario } from './scenario.js'
 import { renderLinkedin } from './linkedin.js'
 import { renderGithub } from './github.js';
+import { renderFrontEndMentor } from './frontendmentor.js';
 
 camera.position.set(0, 120, 117.5)
 
@@ -30,6 +31,8 @@ function animate() {
  
     renderGithub()
 
+    renderFrontEndMentor()
+
     const lookAt = new THREE.Vector3(sphere.body.position.x, sphere.body.position.y, sphere.body.position.z)
     camera.lookAt(lookAt)
 
@@ -39,6 +42,10 @@ function animate() {
 
     if ((sphere.mesh.position.x <= -56 && sphere.mesh.position.x >= -78) && (sphere.mesh.position.z <= -108)) {
         window.location.href = "https://www.github.com/Victor-Lis"
+    }
+
+    if ((sphere.mesh.position.x <= 10 && sphere.mesh.position.x >= -10) && (sphere.mesh.position.z <= -108)) {
+        window.location.href = "https://www.frontendmentor.io/profile/Victor-Lis"
     }
 
     renderer.render(scene, camera);

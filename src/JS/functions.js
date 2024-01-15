@@ -51,6 +51,7 @@ function createPortal({
     bodyTexture,
     restitution,
     portalTexture,
+    portalColor
 }) {
 
     let blocks = []
@@ -116,7 +117,7 @@ function createPortal({
                 bodyPositionY: positionY + width,
                 bodyPositionX: positionX + width * 1.5,
                 bodyPositionZ: positionZ,
-                color: 0x99ffff,
+                color: portalColor? portalColor: 0x99ffff,
                 map: portalTexture,
             })
 

@@ -592,6 +592,7 @@ parcelHelpers.export(exports, "bola", ()=>bola);
 parcelHelpers.export(exports, "portal", ()=>portal);
 parcelHelpers.export(exports, "obsidiana", ()=>obsidiana);
 parcelHelpers.export(exports, "glowstone", ()=>glowstone);
+parcelHelpers.export(exports, "frontEndMentor", ()=>frontEndMentor);
 var _three = require("three");
 var _grassSvg = require("../imgs/grass.svg");
 var _grassSvgDefault = parcelHelpers.interopDefault(_grassSvg);
@@ -615,6 +616,8 @@ var _obsidianaJpeg = require("../imgs/obsidiana.jpeg");
 var _obsidianaJpegDefault = parcelHelpers.interopDefault(_obsidianaJpeg);
 var _glowstonePng = require("../imgs/glowstone.png");
 var _glowstonePngDefault = parcelHelpers.interopDefault(_glowstonePng);
+var _frontEndMentorPng = require("../imgs/front-end-mentor.png");
+var _frontEndMentorPngDefault = parcelHelpers.interopDefault(_frontEndMentorPng);
 const textureLoader = new _three.TextureLoader();
 const grass = textureLoader.load((0, _grassSvgDefault.default));
 const brick = textureLoader.load((0, _stonebrickSvgDefault.default));
@@ -627,8 +630,9 @@ const bola = textureLoader.load((0, _ballPngDefault.default));
 const portal = textureLoader.load((0, _portalGifDefault.default));
 const obsidiana = textureLoader.load((0, _obsidianaJpegDefault.default));
 const glowstone = textureLoader.load((0, _glowstonePngDefault.default));
+const frontEndMentor = textureLoader.load((0, _frontEndMentorPngDefault.default));
 
-},{"three":"dfnD0","../imgs/grass.svg":"iOKIe","../imgs/linkedin.png":"3nz8a","../imgs/github.png":"jk7lD","@parcel/transformer-js/src/esmodule-helpers.js":"LKKdx","../imgs/stonebrick.svg":"gPl3J","../imgs/madeira.jpeg":"6uWlk","../imgs/quartzo.svg":"hIonQ","../imgs/pedregulho.jpeg":"jMBAX","../imgs/ball.png":"5BgPp","../imgs/portal.gif":"dSU8D","../imgs/obsidiana.jpeg":"9riQu","../imgs/glowstone.png":"vUt8r"}],"dfnD0":[function(require,module,exports) {
+},{"three":"dfnD0","../imgs/grass.svg":"iOKIe","../imgs/linkedin.png":"3nz8a","../imgs/github.png":"jk7lD","@parcel/transformer-js/src/esmodule-helpers.js":"LKKdx","../imgs/stonebrick.svg":"gPl3J","../imgs/madeira.jpeg":"6uWlk","../imgs/quartzo.svg":"hIonQ","../imgs/pedregulho.jpeg":"jMBAX","../imgs/ball.png":"5BgPp","../imgs/portal.gif":"dSU8D","../imgs/obsidiana.jpeg":"9riQu","../imgs/glowstone.png":"vUt8r","../imgs/front-end-mentor.png":"f3pKH"}],"dfnD0":[function(require,module,exports) {
 /**
  * @license
  * Copyright 2010-2023 Three.js Authors
@@ -31584,6 +31588,9 @@ module.exports = require("1b30ef9fc8cba450").getBundleURL("jXkz8") + "obsidiana.
 },{"1b30ef9fc8cba450":"j4pdK"}],"vUt8r":[function(require,module,exports) {
 module.exports = require("c3308fa2263f50d6").getBundleURL("jXkz8") + "glowstone.eb95964f.png" + "?" + Date.now();
 
-},{"c3308fa2263f50d6":"j4pdK"}]},["lLcbt","bxNkf"], "bxNkf", "parcelRequirebe84")
+},{"c3308fa2263f50d6":"j4pdK"}],"f3pKH":[function(require,module,exports) {
+module.exports = require("8f8d9edeffe7db8e").getBundleURL("jXkz8") + "front-end-mentor.e0391c88.png" + "?" + Date.now();
+
+},{"8f8d9edeffe7db8e":"j4pdK"}]},["lLcbt","bxNkf"], "bxNkf", "parcelRequirebe84")
 
 //# sourceMappingURL=index.78a75762.js.map

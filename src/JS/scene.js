@@ -17,8 +17,8 @@ document.body.appendChild(renderer.domElement);
 
 const scene = new THREE.Scene();
 
-const axesHelper = new THREE.AxesHelper(5)
-scene.add(axesHelper)
+// const axesHelper = new THREE.AxesHelper(5)
+// scene.add(axesHelper)
 
 const camera = new THREE.PerspectiveCamera(
     45,
@@ -30,7 +30,7 @@ const camera = new THREE.PerspectiveCamera(
 const orbit = new OrbitControls(camera, renderer.domElement);
 
 orbit.update()
-orbit.enabled = false
+// orbit.enabled = false
 
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.25)
 scene.add(ambientLight)

@@ -588,16 +588,19 @@ var _scenePhysJs = require("./scenePhys.js");
 var _scenarioJs = require("./scenario.js");
 var _linkedinJs = require("./linkedin.js");
 var _githubJs = require("./github.js");
+var _frontendmentorJs = require("./frontendmentor.js");
 (0, _sceneJs.camera).position.set(0, 120, 117.5);
 function animate() {
     (0, _scenePhysJs.renderScenePhys)();
     (0, _scenarioJs.renderScenario)();
     (0, _linkedinJs.renderLinkedin)();
     (0, _githubJs.renderGithub)();
+    (0, _frontendmentorJs.renderFrontEndMentor)();
     const lookAt = new _three.Vector3((0, _scenePhysJs.sphere).body.position.x, (0, _scenePhysJs.sphere).body.position.y, (0, _scenePhysJs.sphere).body.position.z);
     (0, _sceneJs.camera).lookAt(lookAt);
     if ((0, _scenePhysJs.sphere).mesh.position.x >= 56 && (0, _scenePhysJs.sphere).mesh.position.x <= 78 && (0, _scenePhysJs.sphere).mesh.position.z <= -108) window.location.href = "https://www.linkedin.com/in/victor-lis-bronzo/";
     if ((0, _scenePhysJs.sphere).mesh.position.x <= -56 && (0, _scenePhysJs.sphere).mesh.position.x >= -78 && (0, _scenePhysJs.sphere).mesh.position.z <= -108) window.location.href = "https://www.github.com/Victor-Lis";
+    if ((0, _scenePhysJs.sphere).mesh.position.x <= 10 && (0, _scenePhysJs.sphere).mesh.position.x >= -10 && (0, _scenePhysJs.sphere).mesh.position.z <= -108) window.location.href = "https://www.frontendmentor.io/profile/Victor-Lis";
     (0, _sceneJs.renderer).render((0, _sceneJs.scene), (0, _sceneJs.camera));
 }
 (0, _sceneJs.renderer).setAnimationLoop(animate);
@@ -648,7 +651,7 @@ window.addEventListener("keydown", (e)=>{
     });
 });
 
-},{"three":"dfnD0","cannon-es":"hgIpQ","dat.gui":"k3xQk","three/examples/jsm/controls/OrbitControls.js":"7wHNO","./scene.js":"lrO6c","./scenePhys.js":"iZCTU","./scenario.js":"i0cnO","./linkedin.js":"8AXaD","./github.js":"jZt5x"}],"hgIpQ":[function(require,module,exports) {
+},{"three":"dfnD0","cannon-es":"hgIpQ","dat.gui":"k3xQk","three/examples/jsm/controls/OrbitControls.js":"7wHNO","./scene.js":"lrO6c","./scenePhys.js":"iZCTU","./scenario.js":"i0cnO","./linkedin.js":"8AXaD","./github.js":"jZt5x","./frontendmentor.js":"avgh1"}],"hgIpQ":[function(require,module,exports) {
 /**
  * Records what objects are colliding with each other
  */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -9802,7 +9805,7 @@ function createWall({ geoWidth, geoHeight, geoDepth, bodyPositionX, bodyPosition
         body
     };
 }
-function createPortal({ positionX, positionY, positionZ, width, bodyTexture, restitution, portalTexture }) {
+function createPortal({ positionX, positionY, positionZ, width, bodyTexture, restitution, portalTexture, portalColor }) {
     let blocks = [];
     positionY = positionY + width / 4;
     while(blocks.length <= 14){
@@ -9845,7 +9848,7 @@ function createPortal({ positionX, positionY, positionZ, width, bodyTexture, res
                 bodyPositionY: positionY + width,
                 bodyPositionX: positionX + width * 1.5,
                 bodyPositionZ: positionZ,
-                color: 0x99ffff,
+                color: portalColor ? portalColor : 0x99ffff,
                 map: portalTexture
             });
             portal.body.quaternion.setFromEuler(0, Math.PI * 1.5, 0);
@@ -9980,7 +9983,7 @@ const linkedinFloorSphereContactMat = new _cannonEs.ContactMaterial(linkedinFloo
 linkedinFloor.body.quaternion.setFromEuler(Math.PI * 1.7, Math.PI * 1.5, 0);
 (0, _scenePhys.world).addContactMaterial(linkedinFloorSphereContactMat);
 const point2Light = new _three.PointLight(0x000ff0, 5000, 300);
-point2Light.position.set(75, 30, -95);
+point2Light.position.set(75, 50, -95);
 (0, _sceneJs.scene).add(point2Light);
 // linkedinFloor.body.quaternion.setFromEuler(0, 0, Math.PI * 1.5);
 (0, _scenePhys.world).addContactMaterial(linkedinFloorSphereContactMat);
@@ -9991,7 +9994,8 @@ const portal = (0, _functionsJs.createPortal)({
     width: 15,
     bodyTexture: (0, _texturesJs.glowstone),
     restitution: 0,
-    portalTexture: (0, _texturesJs.portal)
+    portalTexture: (0, _texturesJs.portal),
+    portalColor: 0x000ff0
 });
 function renderLinkedin() {
     linkedinFloor.mesh.position.copy(linkedinFloor.body.position);
@@ -10018,7 +10022,8 @@ const portal = (0, _functionsJs.createPortal)({
     width: 15,
     bodyTexture: (0, _texturesJs.obsidiana),
     restitution: 0,
-    portalTexture: (0, _texturesJs.portal)
+    portalTexture: (0, _texturesJs.portal),
+    portalColor: 0x3e00a3
 });
 const githubFloor = (0, _functionsJs.createWall)({
     geoWidth: .5,
@@ -10035,14 +10040,59 @@ const githubFloorSphereContactMat = new _cannonEs.ContactMaterial(githubFloor.ph
 });
 githubFloor.body.quaternion.setFromEuler(Math.PI * 1.7, Math.PI * 1.5, 0);
 (0, _scenePhys.world).addContactMaterial(githubFloorSphereContactMat);
-const point3Light = new _three.PointLight(0xffffff, 3500, 300);
-point3Light.position.set(-85, 30, -85);
+const point3Light = new _three.PointLight(0x3e00a3, 5000, 300);
+point3Light.position.set(-70, 50, -105);
 (0, _sceneJs.scene).add(point3Light);
 function renderGithub() {
     githubFloor.mesh.position.copy(githubFloor.body.position);
     githubFloor.mesh.quaternion.copy(githubFloor.body.quaternion);
 }
 
-},{"three":"dfnD0","cannon-es":"hgIpQ","dat.gui":"k3xQk","three/examples/jsm/controls/OrbitControls.js":"7wHNO","./scene.js":"lrO6c","./textures.js":"bxNkf","./scenePhys.js":"iZCTU","./scenePhys":"iZCTU","./functions.js":"f33ck","@parcel/transformer-js/src/esmodule-helpers.js":"LKKdx"}]},["cFM8e","9nOHn"], "9nOHn", "parcelRequirebe84")
+},{"three":"dfnD0","cannon-es":"hgIpQ","dat.gui":"k3xQk","three/examples/jsm/controls/OrbitControls.js":"7wHNO","./scene.js":"lrO6c","./textures.js":"bxNkf","./scenePhys.js":"iZCTU","./scenePhys":"iZCTU","./functions.js":"f33ck","@parcel/transformer-js/src/esmodule-helpers.js":"LKKdx"}],"avgh1":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "renderFrontEndMentor", ()=>renderFrontEndMentor);
+var _three = require("three");
+var _cannonEs = require("cannon-es");
+var _datGui = require("dat.gui");
+var _orbitControlsJs = require("three/examples/jsm/controls/OrbitControls.js");
+var _sceneJs = require("./scene.js");
+var _texturesJs = require("./textures.js");
+var _scenePhysJs = require("./scenePhys.js");
+var _functionsJs = require("./functions.js");
+const frontEndMentorFloor = (0, _functionsJs.createWall)({
+    geoWidth: .5,
+    geoHeight: 30,
+    geoDepth: 30,
+    bodyPositionX: 0,
+    bodyPositionY: 10,
+    bodyPositionZ: -90,
+    color: 0xffffff,
+    map: (0, _texturesJs.frontEndMentor)
+});
+const frontEndMentorFloorSphereContactMat = new _cannonEs.ContactMaterial(frontEndMentorFloor.physMat, (0, _scenePhysJs.sphere).phys, {
+    restitution: 0
+});
+frontEndMentorFloor.body.quaternion.setFromEuler(Math.PI * 1.7, Math.PI * 1.5, 0);
+(0, _scenePhysJs.world).addContactMaterial(frontEndMentorFloorSphereContactMat);
+const portal = (0, _functionsJs.createPortal)({
+    positionX: -22.5,
+    positionY: 5,
+    positionZ: -115,
+    width: 15,
+    restitution: 0,
+    bodyTexture: (0, _texturesJs.madeira),
+    portalTexture: (0, _texturesJs.portal),
+    portalColor: 0x13ff0f
+});
+const pointLight = new _three.PointLight(0x13ff0f, 500, 300);
+pointLight.position.set(0, 50, -105);
+(0, _sceneJs.scene).add(pointLight);
+function renderFrontEndMentor() {
+    frontEndMentorFloor.mesh.position.copy(frontEndMentorFloor.body.position);
+    frontEndMentorFloor.mesh.quaternion.copy(frontEndMentorFloor.body.quaternion);
+}
+
+},{"three":"dfnD0","cannon-es":"hgIpQ","dat.gui":"k3xQk","three/examples/jsm/controls/OrbitControls.js":"7wHNO","./scene.js":"lrO6c","./textures.js":"bxNkf","./scenePhys.js":"iZCTU","./functions.js":"f33ck","@parcel/transformer-js/src/esmodule-helpers.js":"LKKdx"}]},["cFM8e","9nOHn"], "9nOHn", "parcelRequirebe84")
 
 //# sourceMappingURL=index.3bba0cb3.js.map

@@ -35,6 +35,7 @@ const portal = createPortal({
     bodyTexture: obsidiana,
     restitution: 0,
     portalTexture: portalTexture,
+    portalColor: 0x3e00a3,
 })
 
 const githubFloor = createWall({
@@ -59,11 +60,9 @@ const githubFloorSphereContactMat = new CANNON.ContactMaterial(
 githubFloor.body.quaternion.setFromEuler(Math.PI * 1.7, Math.PI * 1.5, 0);
 world.addContactMaterial(githubFloorSphereContactMat)
 
-const point3Light = new THREE.PointLight(0xffffff, 3500, 300)
-point3Light.position.set(-85, 30, -85)
+const point3Light = new THREE.PointLight(0x3e00a3, 5000, 300)
+point3Light.position.set(-70, 50, -105)
 scene.add(point3Light)
-
-
 
 function renderGithub() {
 
