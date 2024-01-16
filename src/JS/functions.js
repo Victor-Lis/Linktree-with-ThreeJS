@@ -15,6 +15,57 @@ import {
     sphere
 } from './scenePhys.js'
 
+function createBlock({
+    width,
+    positionX,
+    positionY,
+    restitution,
+    friction,
+    texture,
+    color,
+}){    
+
+    const geo = new THREE.BoxGeometry(width, width, width)
+    const mat = new THREE.MeshStandardMaterial({
+        color: color ? color : 0x333333,
+        side: THREE.DoubleSide,
+        map: texture,
+    })
+    const mesh = new THREE.Mesh(geo, mat)
+    mesh.position.set(positionX, positionY, positionX+width)
+    scene.add(mesh)
+
+    const physMat = new CANNON.Material()
+
+    const body = new CANNON.Body({
+        //shape: new CANNON.Plane(),
+        //mass: 10
+        shape: new CANNON.Box(new CANNON.Vec3(width / 2, width / 2, width / 2)),
+        position: new CANNON.Vec3(positionX, positionY, positionX+width),
+        type: CANNON.Body.STATIC,
+        material: physMat,
+    });
+
+    world.addBody(body);
+
+    const physSphereContactMat = new CANNON.ContactMaterial(
+        physMat,
+        sphere.phys,
+        {
+            restitution: restitution ? restitution : 0,
+            friction: friction ? friction : 0,
+        }
+    )
+
+    world.addContactMaterial(physSphereContactMat)
+
+    return ({
+        mesh,
+        body
+    })
+
+}
+
 function createWall({ geoWidth, geoHeight, geoDepth, bodyPositionX, bodyPositionY, bodyPositionZ, transparent, opacity, color, map }) {
     const geo = new THREE.BoxGeometry(geoWidth, geoHeight, geoDepth)
     const mat = new THREE.MeshStandardMaterial({
@@ -133,4 +184,4 @@ function createPortal({
     return blocks
 }
 
-export { createWall, createPortal }
+export { createWall, createPortal, createBlock }

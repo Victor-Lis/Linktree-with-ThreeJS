@@ -11,6 +11,7 @@ import portalImg from '../imgs/portal.gif'
 import obsidianImg from '../imgs/obsidiana.jpeg'
 import glowstoneImg from '../imgs/glowstone.png'
 import frontEndMentorImg from '../imgs/front-end-mentor.png'
+import bannerImg from '../imgs/Dev_Victor-Lis.png'
 
 const textureLoader = new THREE.TextureLoader()
 
@@ -26,6 +27,7 @@ const portal = textureLoader.load(portalImg)
 const obsidiana = textureLoader.load(obsidianImg)
 const glowstone = textureLoader.load(glowstoneImg)
 const frontEndMentor = textureLoader.load(frontEndMentorImg)
+const banner = textureLoader.load(bannerImg)
 
 export { 
     grass, 
@@ -39,5 +41,6 @@ export {
     portal, 
     obsidiana,
     glowstone,
-    frontEndMentor
+    frontEndMentor,
+    banner 
 }

@@ -64,7 +64,7 @@ scene.add(sphereMesh)
 const sphereBody = new CANNON.Body({
     mass: 50,
     shape: new CANNON.Sphere(5),
-    position: new CANNON.Vec3(0, 15, 0),
+    position: new CANNON.Vec3(0, 15, 30),
     material: spherePhysMat
 });
 
