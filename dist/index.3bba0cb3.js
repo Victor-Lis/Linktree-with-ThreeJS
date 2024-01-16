@@ -589,6 +589,7 @@ var _scenarioJs = require("./scenario.js");
 var _linkedinJs = require("./linkedin.js");
 var _githubJs = require("./github.js");
 var _frontendmentorJs = require("./frontendmentor.js");
+var _bannerJs = require("./banner.js");
 (0, _sceneJs.camera).position.set(0, 120, 117.5);
 function animate() {
     (0, _scenePhysJs.renderScenePhys)();
@@ -596,6 +597,7 @@ function animate() {
     (0, _linkedinJs.renderLinkedin)();
     (0, _githubJs.renderGithub)();
     (0, _frontendmentorJs.renderFrontEndMentor)();
+    (0, _bannerJs.renderBanner)();
     const lookAt = new _three.Vector3((0, _scenePhysJs.sphere).body.position.x, (0, _scenePhysJs.sphere).body.position.y, (0, _scenePhysJs.sphere).body.position.z);
     (0, _sceneJs.camera).lookAt(lookAt);
     if ((0, _scenePhysJs.sphere).mesh.position.x >= 56 && (0, _scenePhysJs.sphere).mesh.position.x <= 78 && (0, _scenePhysJs.sphere).mesh.position.z <= -108) window.location.href = "https://www.linkedin.com/in/victor-lis-bronzo/";
@@ -651,7 +653,7 @@ window.addEventListener("keydown", (e)=>{
     });
 });
 
-},{"three":"dfnD0","cannon-es":"hgIpQ","dat.gui":"k3xQk","three/examples/jsm/controls/OrbitControls.js":"7wHNO","./scene.js":"lrO6c","./scenePhys.js":"iZCTU","./scenario.js":"i0cnO","./linkedin.js":"8AXaD","./github.js":"jZt5x","./frontendmentor.js":"avgh1"}],"hgIpQ":[function(require,module,exports) {
+},{"three":"dfnD0","cannon-es":"hgIpQ","dat.gui":"k3xQk","three/examples/jsm/controls/OrbitControls.js":"7wHNO","./scene.js":"lrO6c","./scenePhys.js":"iZCTU","./scenario.js":"i0cnO","./linkedin.js":"8AXaD","./github.js":"jZt5x","./frontendmentor.js":"avgh1","./banner.js":"53j5P"}],"hgIpQ":[function(require,module,exports) {
 /**
  * Records what objects are colliding with each other
  */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -9738,7 +9740,7 @@ const sphereMesh = new _three.Mesh(sphereGeo, sphereMat);
 const sphereBody = new _cannonEs.Body({
     mass: 50,
     shape: new _cannonEs.Sphere(5),
-    position: new _cannonEs.Vec3(0, 15, 0),
+    position: new _cannonEs.Vec3(0, 15, 30),
     material: spherePhysMat
 });
 world.addBody(sphereBody);
@@ -9772,12 +9774,43 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "createWall", ()=>createWall);
 parcelHelpers.export(exports, "createPortal", ()=>createPortal);
+parcelHelpers.export(exports, "createBlock", ()=>createBlock);
 var _three = require("three");
 var _cannonEs = require("cannon-es");
 var _datGui = require("dat.gui");
 var _orbitControlsJs = require("three/examples/jsm/controls/OrbitControls.js");
 var _sceneJs = require("./scene.js");
 var _scenePhysJs = require("./scenePhys.js");
+function createBlock({ width, positionX, positionY, restitution, friction, texture, color }) {
+    const geo = new _three.BoxGeometry(width, width, width);
+    const mat = new _three.MeshStandardMaterial({
+        color: color ? color : 0x333333,
+        side: _three.DoubleSide,
+        map: texture
+    });
+    const mesh = new _three.Mesh(geo, mat);
+    mesh.position.set(positionX, positionY, positionX + width);
+    (0, _sceneJs.scene).add(mesh);
+    const physMat = new _cannonEs.Material();
+    const body = new _cannonEs.Body({
+        //shape: new CANNON.Plane(),
+        //mass: 10
+        shape: new _cannonEs.Box(new _cannonEs.Vec3(width / 2, width / 2, width / 2)),
+        position: new _cannonEs.Vec3(positionX, positionY, positionX + width),
+        type: _cannonEs.Body.STATIC,
+        material: physMat
+    });
+    (0, _scenePhysJs.world).addBody(body);
+    const physSphereContactMat = new _cannonEs.ContactMaterial(physMat, (0, _scenePhysJs.sphere).phys, {
+        restitution: restitution ? restitution : 0,
+        friction: friction ? friction : 0
+    });
+    (0, _scenePhysJs.world).addContactMaterial(physSphereContactMat);
+    return {
+        mesh,
+        body
+    };
+}
 function createWall({ geoWidth, geoHeight, geoDepth, bodyPositionX, bodyPositionY, bodyPositionZ, transparent, opacity, color, map }) {
     const geo = new _three.BoxGeometry(geoWidth, geoHeight, geoDepth);
     const mat = new _three.MeshStandardMaterial({
@@ -10093,6 +10126,34 @@ function renderFrontEndMentor() {
     frontEndMentorFloor.mesh.quaternion.copy(frontEndMentorFloor.body.quaternion);
 }
 
-},{"three":"dfnD0","cannon-es":"hgIpQ","dat.gui":"k3xQk","three/examples/jsm/controls/OrbitControls.js":"7wHNO","./scene.js":"lrO6c","./textures.js":"bxNkf","./scenePhys.js":"iZCTU","./functions.js":"f33ck","@parcel/transformer-js/src/esmodule-helpers.js":"LKKdx"}]},["cFM8e","9nOHn"], "9nOHn", "parcelRequirebe84")
+},{"three":"dfnD0","cannon-es":"hgIpQ","dat.gui":"k3xQk","three/examples/jsm/controls/OrbitControls.js":"7wHNO","./scene.js":"lrO6c","./textures.js":"bxNkf","./scenePhys.js":"iZCTU","./functions.js":"f33ck","@parcel/transformer-js/src/esmodule-helpers.js":"LKKdx"}],"53j5P":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "renderBanner", ()=>renderBanner);
+var _cannonEs = require("cannon-es");
+var _scenePhys = require("./scenePhys");
+var _functionsJs = require("./functions.js");
+var _texturesJs = require("./textures.js");
+const banner = (0, _functionsJs.createWall)({
+    bodyPositionX: -0.5,
+    bodyPositionY: 0,
+    bodyPositionZ: 30,
+    geoWidth: 250,
+    geoDepth: 80,
+    geoHeight: .1,
+    color: 0xffffff,
+    map: (0, _texturesJs.banner)
+});
+const bannerSphereContactMat = new _cannonEs.ContactMaterial(banner.physMat, (0, _scenePhys.sphere).phys, {
+    friction: 100,
+    restitution: 0
+});
+(0, _scenePhys.world).addContactMaterial(bannerSphereContactMat);
+function renderBanner() {
+    banner.mesh.position.copy(banner.body.position);
+    banner.mesh.quaternion.copy(banner.body.quaternion);
+}
+
+},{"cannon-es":"hgIpQ","./scenePhys":"iZCTU","./functions.js":"f33ck","./textures.js":"bxNkf","@parcel/transformer-js/src/esmodule-helpers.js":"LKKdx"}]},["cFM8e","9nOHn"], "9nOHn", "parcelRequirebe84")
 
 //# sourceMappingURL=index.3bba0cb3.js.map

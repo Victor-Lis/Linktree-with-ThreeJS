@@ -18,6 +18,7 @@ import { renderScenario } from './scenario.js'
 import { renderLinkedin } from './linkedin.js'
 import { renderGithub } from './github.js';
 import { renderFrontEndMentor } from './frontendmentor.js';
+import { renderBanner } from './banner.js';
 
 camera.position.set(0, 120, 117.5)
 
@@ -32,6 +33,8 @@ function animate() {
     renderGithub()
 
     renderFrontEndMentor()
+
+    renderBanner()
 
     const lookAt = new THREE.Vector3(sphere.body.position.x, sphere.body.position.y, sphere.body.position.z)
     camera.lookAt(lookAt)
