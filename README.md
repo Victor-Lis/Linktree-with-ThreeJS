@@ -20,7 +20,7 @@ Foi um projeto muito bacana de desenvolver, aprendi muito sobre a arquitetura do
 
 Nas versões anteriores havia um bug que ao ricochetear repetidas vezes na parede a bolinha era jogada para fora do mapa.
 
-Descobri isso graças a ajuda do [Nícolas](https://github.com/NicolasOBP), após minha publicação no Linkedin sobre esse projeto.
+Descobri isso graças a observação do [Nícolas](https://github.com/NicolasOBP), após minha publicação no Linkedin sobre esse projeto.
 
 ## Autores
 
