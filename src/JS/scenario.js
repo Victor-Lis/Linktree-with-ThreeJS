@@ -33,7 +33,7 @@ const wall1SphereContactMat = new CANNON.ContactMaterial(
     sphere.phys,
     {
         friction: 1,
-        restitution: 2
+        restitution: 1
     }
 );
 
@@ -54,7 +54,7 @@ const wall2SphereContactMat = new CANNON.ContactMaterial(
     sphere.phys,
     {
         friction: 1,
-        restitution: 2
+        restitution: 1
     }
 );
 
@@ -75,7 +75,7 @@ const wall3SphereContactMat = new CANNON.ContactMaterial(
     sphere.phys,
     {
         friction: 1,
-        restitution: 2
+        restitution: 1
     }
 );
 
@@ -95,7 +95,7 @@ const wall4SphereContactMat = new CANNON.ContactMaterial(
     sphere.phys,
     {
         friction: 1,
-        restitution: 2
+        restitution: 1
     }
 );
 
