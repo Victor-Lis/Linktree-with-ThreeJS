@@ -142,7 +142,7 @@
       this[globalName] = mainExports;
     }
   }
-})({"h4iFf":[function(require,module,exports) {
+})({"FDqym":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
@@ -616,7 +616,7 @@ window.addEventListener("resize", function() {
 });
 camera.position.set(0, 50, 0);
 
-},{"three":"dfnD0","dat.gui":"k3xQk","three/examples/jsm/controls/OrbitControls.js":"7wHNO","@parcel/transformer-js/src/esmodule-helpers.js":"LKKdx"}],"k3xQk":[function(require,module,exports) {
+},{"three":"ktPTu","dat.gui":"k3xQk","three/examples/jsm/controls/OrbitControls.js":"7mqRv","@parcel/transformer-js/src/esmodule-helpers.js":"1kXkW"}],"k3xQk":[function(require,module,exports) {
 /**
  * dat-gui JavaScript Controller Library
  * https://github.com/dataarts/dat.gui
@@ -2907,7 +2907,7 @@ var index = {
 };
 exports.default = index;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"LKKdx"}],"7wHNO":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"1kXkW"}],"7mqRv":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "OrbitControls", ()=>OrbitControls);
@@ -3666,6 +3666,6 @@ class OrbitControls extends (0, _three.EventDispatcher) {
     }
 }
 
-},{"three":"dfnD0","@parcel/transformer-js/src/esmodule-helpers.js":"LKKdx"}]},["h4iFf","lrO6c"], "lrO6c", "parcelRequirebe84")
+},{"three":"ktPTu","@parcel/transformer-js/src/esmodule-helpers.js":"1kXkW"}]},["FDqym","lrO6c"], "lrO6c", "parcelRequirebe84")
 
 //# sourceMappingURL=index.adf7eed9.js.map

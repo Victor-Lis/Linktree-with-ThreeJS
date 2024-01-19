@@ -142,7 +142,7 @@
       this[globalName] = mainExports;
     }
   }
-})({"cFM8e":[function(require,module,exports) {
+})({"8LoPp":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
@@ -653,7 +653,7 @@ window.addEventListener("keydown", (e)=>{
     });
 });
 
-},{"three":"dfnD0","cannon-es":"hgIpQ","dat.gui":"k3xQk","three/examples/jsm/controls/OrbitControls.js":"7wHNO","./scene.js":"lrO6c","./scenePhys.js":"iZCTU","./scenario.js":"i0cnO","./linkedin.js":"8AXaD","./github.js":"jZt5x","./frontendmentor.js":"avgh1","./banner.js":"53j5P"}],"hgIpQ":[function(require,module,exports) {
+},{"three":"ktPTu","cannon-es":"HCu3b","dat.gui":"k3xQk","three/examples/jsm/controls/OrbitControls.js":"7mqRv","./scene.js":"lrO6c","./scenePhys.js":"iZCTU","./scenario.js":"i0cnO","./linkedin.js":"8AXaD","./github.js":"jZt5x","./frontendmentor.js":"avgh1","./banner.js":"53j5P"}],"HCu3b":[function(require,module,exports) {
 /**
  * Records what objects are colliding with each other
  */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -9692,7 +9692,7 @@ const endShapeContactEvent = {
     shapeB: null
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"LKKdx"}],"iZCTU":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"1kXkW"}],"iZCTU":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "world", ()=>world);
@@ -9769,7 +9769,7 @@ function renderScenePhys() {
     sphere.mesh.quaternion.copy(sphere.body.quaternion);
 }
 
-},{"three":"dfnD0","cannon-es":"hgIpQ","dat.gui":"k3xQk","three/examples/jsm/controls/OrbitControls.js":"7wHNO","./textures.js":"bxNkf","@parcel/transformer-js/src/esmodule-helpers.js":"LKKdx","./scene.js":"lrO6c","./functions.js":"f33ck"}],"f33ck":[function(require,module,exports) {
+},{"three":"ktPTu","cannon-es":"HCu3b","dat.gui":"k3xQk","three/examples/jsm/controls/OrbitControls.js":"7mqRv","./textures.js":"bxNkf","./scene.js":"lrO6c","./functions.js":"f33ck","@parcel/transformer-js/src/esmodule-helpers.js":"1kXkW"}],"f33ck":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "createWall", ()=>createWall);
@@ -9892,7 +9892,7 @@ function createPortal({ positionX, positionY, positionZ, width, bodyTexture, res
     return blocks;
 }
 
-},{"three":"dfnD0","cannon-es":"hgIpQ","dat.gui":"k3xQk","three/examples/jsm/controls/OrbitControls.js":"7wHNO","@parcel/transformer-js/src/esmodule-helpers.js":"LKKdx","./scenePhys.js":"iZCTU","./scene.js":"lrO6c"}],"i0cnO":[function(require,module,exports) {
+},{"three":"ktPTu","cannon-es":"HCu3b","dat.gui":"k3xQk","three/examples/jsm/controls/OrbitControls.js":"7mqRv","./scene.js":"lrO6c","./scenePhys.js":"iZCTU","@parcel/transformer-js/src/esmodule-helpers.js":"1kXkW"}],"i0cnO":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "renderScenario", ()=>renderScenario);
@@ -9914,7 +9914,7 @@ const wall1 = (0, _functionsJs.createWall)({
 });
 const wall1SphereContactMat = new _cannonEs.ContactMaterial(wall1.physMat, (0, _scenePhysJs.sphere).phys, {
     friction: 1,
-    restitution: 2
+    restitution: 1
 });
 (0, _scenePhys.world).addContactMaterial(wall1SphereContactMat);
 wall1.body.quaternion.setFromEuler(0, Math.PI * -0.5, 0);
@@ -9928,7 +9928,7 @@ const wall2 = (0, _functionsJs.createWall)({
 });
 const wall2SphereContactMat = new _cannonEs.ContactMaterial(wall2.physMat, (0, _scenePhysJs.sphere).phys, {
     friction: 1,
-    restitution: 2
+    restitution: 1
 });
 (0, _scenePhys.world).addContactMaterial(wall2SphereContactMat);
 wall2.body.quaternion.setFromEuler(0, Math.PI * -0.5, 0);
@@ -9942,7 +9942,7 @@ const wall3 = (0, _functionsJs.createWall)({
 });
 const wall3SphereContactMat = new _cannonEs.ContactMaterial(wall3.physMat, (0, _scenePhysJs.sphere).phys, {
     friction: 1,
-    restitution: 2
+    restitution: 1
 });
 (0, _scenePhys.world).addContactMaterial(wall3SphereContactMat);
 const wall4 = (0, _functionsJs.createWall)({
@@ -9955,7 +9955,7 @@ const wall4 = (0, _functionsJs.createWall)({
 });
 const wall4SphereContactMat = new _cannonEs.ContactMaterial(wall4.physMat, (0, _scenePhysJs.sphere).phys, {
     friction: 1,
-    restitution: 2
+    restitution: 1
 });
 (0, _scenePhys.world).addContactMaterial(wall4SphereContactMat);
 const roof = (0, _functionsJs.createWall)({
@@ -9987,7 +9987,7 @@ function renderScenario() {
     roof.mesh.quaternion.copy(roof.body.quaternion);
 }
 
-},{"three":"dfnD0","cannon-es":"hgIpQ","dat.gui":"k3xQk","three/examples/jsm/controls/OrbitControls.js":"7wHNO","./scenePhys.js":"iZCTU","./scenePhys":"iZCTU","./functions.js":"f33ck","@parcel/transformer-js/src/esmodule-helpers.js":"LKKdx","./textures.js":"bxNkf"}],"8AXaD":[function(require,module,exports) {
+},{"three":"ktPTu","cannon-es":"HCu3b","dat.gui":"k3xQk","three/examples/jsm/controls/OrbitControls.js":"7mqRv","./scenePhys.js":"iZCTU","./textures.js":"bxNkf","./scenePhys":"iZCTU","./functions.js":"f33ck","@parcel/transformer-js/src/esmodule-helpers.js":"1kXkW"}],"8AXaD":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "renderLinkedin", ()=>renderLinkedin);
@@ -10035,7 +10035,7 @@ function renderLinkedin() {
     linkedinFloor.mesh.quaternion.copy(linkedinFloor.body.quaternion);
 }
 
-},{"three":"dfnD0","cannon-es":"hgIpQ","dat.gui":"k3xQk","three/examples/jsm/controls/OrbitControls.js":"7wHNO","./scene.js":"lrO6c","./textures.js":"bxNkf","./scenePhys.js":"iZCTU","./scenePhys":"iZCTU","./functions.js":"f33ck","@parcel/transformer-js/src/esmodule-helpers.js":"LKKdx"}],"jZt5x":[function(require,module,exports) {
+},{"three":"ktPTu","cannon-es":"HCu3b","dat.gui":"k3xQk","three/examples/jsm/controls/OrbitControls.js":"7mqRv","./scene.js":"lrO6c","./textures.js":"bxNkf","./scenePhys.js":"iZCTU","./scenePhys":"iZCTU","./functions.js":"f33ck","@parcel/transformer-js/src/esmodule-helpers.js":"1kXkW"}],"jZt5x":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "renderGithub", ()=>renderGithub);
@@ -10081,7 +10081,7 @@ function renderGithub() {
     githubFloor.mesh.quaternion.copy(githubFloor.body.quaternion);
 }
 
-},{"three":"dfnD0","cannon-es":"hgIpQ","dat.gui":"k3xQk","three/examples/jsm/controls/OrbitControls.js":"7wHNO","./scene.js":"lrO6c","./textures.js":"bxNkf","./scenePhys.js":"iZCTU","./scenePhys":"iZCTU","./functions.js":"f33ck","@parcel/transformer-js/src/esmodule-helpers.js":"LKKdx"}],"avgh1":[function(require,module,exports) {
+},{"three":"ktPTu","cannon-es":"HCu3b","dat.gui":"k3xQk","three/examples/jsm/controls/OrbitControls.js":"7mqRv","./scene.js":"lrO6c","./textures.js":"bxNkf","./scenePhys.js":"iZCTU","./scenePhys":"iZCTU","./functions.js":"f33ck","@parcel/transformer-js/src/esmodule-helpers.js":"1kXkW"}],"avgh1":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "renderFrontEndMentor", ()=>renderFrontEndMentor);
@@ -10126,7 +10126,7 @@ function renderFrontEndMentor() {
     frontEndMentorFloor.mesh.quaternion.copy(frontEndMentorFloor.body.quaternion);
 }
 
-},{"three":"dfnD0","cannon-es":"hgIpQ","dat.gui":"k3xQk","three/examples/jsm/controls/OrbitControls.js":"7wHNO","./scene.js":"lrO6c","./textures.js":"bxNkf","./scenePhys.js":"iZCTU","./functions.js":"f33ck","@parcel/transformer-js/src/esmodule-helpers.js":"LKKdx"}],"53j5P":[function(require,module,exports) {
+},{"three":"ktPTu","cannon-es":"HCu3b","dat.gui":"k3xQk","three/examples/jsm/controls/OrbitControls.js":"7mqRv","./scene.js":"lrO6c","./textures.js":"bxNkf","./scenePhys.js":"iZCTU","./functions.js":"f33ck","@parcel/transformer-js/src/esmodule-helpers.js":"1kXkW"}],"53j5P":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "renderBanner", ()=>renderBanner);
@@ -10154,6 +10154,6 @@ function renderBanner() {
     banner.mesh.quaternion.copy(banner.body.quaternion);
 }
 
-},{"cannon-es":"hgIpQ","./scenePhys":"iZCTU","./functions.js":"f33ck","./textures.js":"bxNkf","@parcel/transformer-js/src/esmodule-helpers.js":"LKKdx"}]},["cFM8e","9nOHn"], "9nOHn", "parcelRequirebe84")
+},{"cannon-es":"HCu3b","./scenePhys":"iZCTU","./functions.js":"f33ck","./textures.js":"bxNkf","@parcel/transformer-js/src/esmodule-helpers.js":"1kXkW"}]},["8LoPp","9nOHn"], "9nOHn", "parcelRequirebe84")
 
 //# sourceMappingURL=index.3bba0cb3.js.map
