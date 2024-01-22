@@ -8,6 +8,7 @@ import {
 } from './scene.js'
 
 import {
+    ground,
     world
 } from './scenePhys.js'
 
@@ -19,11 +20,13 @@ function createBlock({
     width,
     positionX,
     positionY,
+    positionZ,
     restitution,
     friction,
     texture,
     color,
-}){    
+    mass
+}) {
 
     const geo = new THREE.BoxGeometry(width, width, width)
     const mat = new THREE.MeshStandardMaterial({
@@ -32,18 +35,18 @@ function createBlock({
         map: texture,
     })
     const mesh = new THREE.Mesh(geo, mat)
-    mesh.position.set(positionX, positionY, positionX+width)
+    mesh.position.set(positionX, positionY, positionZ ? positionZ : positionX + width)
     scene.add(mesh)
 
     const physMat = new CANNON.Material()
 
     const body = new CANNON.Body({
         //shape: new CANNON.Plane(),
-        //mass: 10
+        // mass: 10,
         shape: new CANNON.Box(new CANNON.Vec3(width / 2, width / 2, width / 2)),
-        position: new CANNON.Vec3(positionX, positionY, positionX+width),
-        type: CANNON.Body.STATIC,
+        position: new CANNON.Vec3(positionX, positionY, positionZ ? positionZ : positionX + width),
         material: physMat,
+        mass: mass ? mass : 5,
     });
 
     world.addBody(body);
@@ -168,7 +171,7 @@ function createPortal({
                 bodyPositionY: positionY + width,
                 bodyPositionX: positionX + width * 1.5,
                 bodyPositionZ: positionZ,
-                color: portalColor? portalColor: 0x99ffff,
+                color: portalColor ? portalColor : 0x99ffff,
                 map: portalTexture,
             })
 
@@ -184,4 +187,60 @@ function createPortal({
     return blocks
 }
 
-export { createWall, createPortal, createBlock }
+function createBall({
+    texture,
+    positionX,
+    positionY,
+    positionZ,
+}) {
+    const spherePhysMat = new CANNON.Material()
+
+    const sphereGeo = new THREE.SphereGeometry(5)
+    const sphereMat = new THREE.MeshLambertMaterial({
+        color: 0xffffff,
+        map: texture && texture,
+    })
+    const sphereMesh = new THREE.Mesh(sphereGeo, sphereMat)
+    scene.add(sphereMesh)
+
+    const sphereBody = new CANNON.Body({
+        mass: 5,
+        shape: new CANNON.Sphere(5),
+        position: new CANNON.Vec3(positionX, positionY, positionZ),
+        material: spherePhysMat
+    });
+
+    world.addBody(sphereBody)
+
+    const spheresContactMat = new CANNON.ContactMaterial(
+        sphere.phys,
+        spherePhysMat,
+        {
+            friction: 1,
+            restitution: 1
+        }
+    );
+
+    sphereMesh.position.copy(sphereBody.position)
+
+    sphereBody.linearDamping = 0.25
+    world.addContactMaterial(spheresContactMat);
+
+    const sphereGroundContactMat = new CANNON.ContactMaterial(
+        ground.phys,
+        spherePhysMat,
+        {
+            friction: 1,
+            restitution: 0
+        }
+    );
+
+    world.addContactMaterial(sphereGroundContactMat);
+
+    return {
+        mesh: sphereMesh,
+        body: sphereBody
+    }
+}
+
+export { createWall, createPortal, createBlock, createBall }

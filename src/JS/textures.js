@@ -12,6 +12,8 @@ import obsidianImg from '../imgs/obsidiana.jpeg'
 import glowstoneImg from '../imgs/glowstone.png'
 import frontEndMentorImg from '../imgs/front-end-mentor.png'
 import bannerImg from '../imgs/Dev_Victor-Lis.png'
+import followersFloorImg from '../imgs/Followers.png'
+import starsFloorImg from '../imgs/stars.png'
 
 const textureLoader = new THREE.TextureLoader()
 
@@ -28,6 +30,8 @@ const obsidiana = textureLoader.load(obsidianImg)
 const glowstone = textureLoader.load(glowstoneImg)
 const frontEndMentor = textureLoader.load(frontEndMentorImg)
 const banner = textureLoader.load(bannerImg)
+const followersFloor = textureLoader.load(followersFloorImg)
+const starsFloor = textureLoader.load(starsFloorImg)
 
 export { 
     grass, 
@@ -42,5 +46,8 @@ export {
     obsidiana,
     glowstone,
     frontEndMentor,
-    banner 
+    banner,
+    followersFloor,
+    starsFloor,
+    textureLoader
 }
