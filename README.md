@@ -16,6 +16,12 @@ Foi um projeto muito bacana de desenvolver, aprendi muito sobre a arquitetura do
 ![](https://github.com/Victor-Lis/Portfolio-with-ThreeJS/blob/master/src/imgs/Project-Images/print2.png)
 ![](https://github.com/Victor-Lis/Portfolio-with-ThreeJS/blob/master/src/imgs/Project-Images/print3.png)
 
+## Atualização - v3.6+
+
+Nas versões anteriores havia um bug que ao ricochetear repetidas vezes na parede a bolinha era jogada para fora do mapa.
+
+Descobri isso graças a observação do [Nícolas](https://github.com/NicolasOBP), após minha publicação no Linkedin sobre esse projeto.
+
 ## Autores
 
 - [@Victor-Lis](https://github.com/Victor-Lis)
