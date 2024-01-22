@@ -6,6 +6,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import {
     grass,
     brick,
+    bola, 
 } from './textures.js'
 
 import { 
@@ -13,15 +14,6 @@ import {
     camera,
     scene,
 } from './scene.js'
-
-import {
-    grass,
-    bola, 
-} from './textures.js'
-
-import {
-    createBox
-} from './functions.js'
 
 const world = new CANNON.World({
     gravity: new CANNON.Vec3(0, -19.81, 0),

@@ -3,22 +3,18 @@ import * as CANNON from 'cannon-es'
 import * as dat from 'dat.gui'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
-import { 
-    renderer, 
-    camera,
-    scene,
-} from './scene.js'
-
-import {
-    sphere,
-    renderScenePhys
-} from './scenePhys.js'
-
+import { renderer, camera, scene, } from './scene.js'
+import { sphere, renderScenePhys } from './scenePhys.js'
 import { renderScenario } from './scenario.js'
 import { renderLinkedin } from './linkedin.js'
 import { renderGithub } from './github.js';
 import { renderFrontEndMentor } from './frontendmentor.js';
 import { renderBanner } from './banner.js';
+import { renderGithubLobby, teleportToGithubLobby } from './githubLobby.js';
+import { renderGithubPortals } from './githubPortals.js'
+import { renderFollowersLobby, teleportToFollowersLobby, getFollowers } from './githubFollowers.js';
+
+getFollowers()
 
 camera.position.set(0, 120, 117.5)
 
@@ -36,6 +32,12 @@ function animate() {
 
     renderBanner()
 
+    renderGithubLobby()
+
+    renderGithubPortals()
+
+    renderFollowersLobby()
+
     const lookAt = new THREE.Vector3(sphere.body.position.x, sphere.body.position.y, sphere.body.position.z)
     camera.lookAt(lookAt)
 
@@ -44,11 +46,24 @@ function animate() {
     }
 
     if ((sphere.mesh.position.x <= -56 && sphere.mesh.position.x >= -78) && (sphere.mesh.position.z <= -108)) {
-        window.location.href = "https://www.github.com/Victor-Lis"
+        // window.location.href = "https://www.github.com/Victor-Lis"
+        teleportToGithubLobby()
     }
 
     if ((sphere.mesh.position.x <= 10 && sphere.mesh.position.x >= -10) && (sphere.mesh.position.z <= -108)) {
         window.location.href = "https://www.frontendmentor.io/profile/Victor-Lis"
+    }
+
+    if ((sphere.mesh.position.x <= -56 && sphere.mesh.position.x >= -78) && (sphere.mesh.position.z >= 143 && sphere.mesh.position.z <= 146))  {
+        teleportToFollowersLobby()
+    }
+
+    if ((sphere.mesh.position.x <= -242 && sphere.mesh.position.x >= -262) && (sphere.mesh.position.z >= 135 && sphere.mesh.position.z <= 136))  {
+        teleportToGithubLobby()
+    }
+
+    if ((sphere.mesh.position.x <= 78 && sphere.mesh.position.x >= 58) && (sphere.mesh.position.z >= 143 && sphere.mesh.position.z <= 146))  {
+        window.location.href = "https://www.github.com/Victor-Lis"
     }
 
     renderer.render(scene, camera);
