@@ -9,6 +9,7 @@ Foi um projeto muito bacana de desenvolver, aprendi muito sobre a arquitetura do
 ## Aprendizados
 
 - Dividir arquivos JS em módulos, para facilitar o entendimento do código;
+- Entender como trabalhar com um projeto maior utilizando ThreeJS;
 - Criar funções globais para facilitarem o código.
 
 ## Screenshots
@@ -35,6 +36,9 @@ Criação de um "lobby" para o Github, ao invés do redirecionamento direto.
 No lobby Github agora tem 2 portais:
 - Um que leva para outra área onde estão os meus seguidores em formatos de caixas.
 - Um que redireciona para a página do Github.
+
+
+Sigo aprendendo ThreeJS, não na mesma intensidade de quando estava desenvolvendo ativamente o projeto, mas continuo vendo em momentos livres.
 
 ### Lobby
 ![](https://github.com/Victor-Lis/Portfolio-with-ThreeJS/blob/master/src/imgs/Project-Images/github-lobby.png)
