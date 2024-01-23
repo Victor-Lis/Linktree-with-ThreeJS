@@ -1,4 +1,4 @@
-# Linktree-with-ThreeJS - v1
+# Linktree-with-ThreeJS
 
 Esse é um projeto de "Linktree" na qual redireciona para minhas redes sociais.
 
@@ -12,8 +12,14 @@ Foi um projeto muito bacana de desenvolver, aprendi muito sobre a arquitetura do
 - Criar funções globais para facilitarem o código.
 
 ## Screenshots
+
+### Portal para o Lobby Github
 ![](https://github.com/Victor-Lis/Portfolio-with-ThreeJS/blob/master/src/imgs/Project-Images/print1.png)
+
+### Portal do redirecionamento para o Linkedin
 ![](https://github.com/Victor-Lis/Portfolio-with-ThreeJS/blob/master/src/imgs/Project-Images/print2.png)
+
+### Portal do redirecionamento para o Front-End Mentor
 ![](https://github.com/Victor-Lis/Portfolio-with-ThreeJS/blob/master/src/imgs/Project-Images/print3.png)
 
 ## Atualização - v3.6+
@@ -29,6 +35,13 @@ Criação de um "lobby" para o Github, ao invés do redirecionamento direto.
 No lobby Github agora tem 2 portais:
 - Um que leva para outra área onde estão os meus seguidores em formatos de caixas.
 - Um que redireciona para a página do Github.
+
+### Lobby
+![](https://github.com/Victor-Lis/Portfolio-with-ThreeJS/blob/master/src/imgs/Project-Images/github-lobby.png)
+![](https://github.com/Victor-Lis/Portfolio-with-ThreeJS/blob/master/src/imgs/Project-Images/github-lobby2.png)
+
+### Followers
+![](https://github.com/Victor-Lis/Portfolio-with-ThreeJS/blob/master/src/imgs/Project-Images/github-followers.png)
 
 ## Autores
 
