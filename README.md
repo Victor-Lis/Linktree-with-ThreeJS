@@ -6,6 +6,11 @@ Decidi optar pela pegada de um jogo, no caso Minecraft. Com o redirecionamento d
 
 Foi um projeto muito bacana de desenvolver, aprendi muito sobre a arquitetura dos arquivos durante ele.
 
+## Techs
+<div align="center">
+  <img width="40" height="40" src="https://github.com/devicons/devicon/blob/master/icons/threejs/threejs-original-wordmark.svg" alt="ThreeJS">
+</div>
+
 ## Aprendizados
 
 - Dividir arquivos JS em módulos, para facilitar o entendimento do código;
