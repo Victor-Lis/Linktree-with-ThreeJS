@@ -42,6 +42,10 @@ Descobri isso graças a observação do [Nícolas](https://github.com/NicolasOBP
 
 <br>
 
+Esse projeto foi temporariamente depreciado, o oficial atualmente é https://victor-lis.vercel.app
+
+<br>
+
 ## Autores ✍️
 
 - [@Victor-Lis](https://github.com/Victor-Lis)
